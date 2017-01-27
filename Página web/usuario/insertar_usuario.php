@@ -44,6 +44,7 @@
              $result = $connection->query("SELECT * FROM usuarios;"); 
 
             ?>
+              
             
             <br>
               <span>DNI</span><input type="number"  name="dni" required><br><br/>
@@ -53,11 +54,16 @@
               <span>Ciudad</span><input type="text" name="ciudad"><br/><br/>
               <span>Email</span><input type="email" name="email"><br/><br/>
               <span>Contraseña</span><input type="password" name="pass"><br/><br/>
-	           <span><input type="submit" value="Enviar"><br>
+              <span>Rol</span><select name="rol">
+                                <option>Usuario</option>
+                                <option>Administrador</option>
+                              </select><br/><br/>
+	           <input type="submit" value="Enviar"><br>
 	         </fieldset>
         </form>
 
       <?php else: ?>
+      
 
       <?php
             echo "<h2>Estos son tus datos introducidos</h2>";
@@ -74,7 +80,7 @@
 
 
                 
-            $consulta= "INSERT INTO usuarios VALUES(".$_POST['dni'].",'".$_POST['nombre']."','".$_POST["apellido"]."','".$_POST['pais']."','".$_POST['ciudad']."','".$_POST['email']."','".$_POST['pass']."')";
+            $consulta= "INSERT INTO usuarios VALUES(".$_POST['dni'].",'".$_POST['nombre']."','".$_POST["apellido"]."','".$_POST['pais']."','".$_POST['ciudad']."','".$_POST['email']."','".$_POST['pass']."','".$_POST['rol']."')";
             
 
 
@@ -99,24 +105,25 @@
             
             <table border="1">
        <tr>
-         <td>DNI</td>
-           <td>Nombre</td>
-         <td>Apellidos</td>
-         <td>Pais</td>
-         <td>Ciudad</td>
-         <td>Email</td>
-         <td>Contraseña</td>
+         <td><b>DNI</b></td>
+           <td><b>Nombre</b></td>
+         <td><b>Apellidos</b></td>
+         <td><b>Pais</b></td>
+         <td><b>Ciudad</b></td>
+         <td><b>Email</b></td>
+         <td><b>Contraseña</b></td>
+         <td><b>Rol</b></td>
         </tr>
 
     <?php
-      //Con el comienzo de la tabla creada arriba, realizamos la conexion.
+
       $connection = new mysqli("localhost", "root", "", "proyecto");
       //Comprobamos que sea correcta la conexion.
       if ($connection->connect_errno) {
           printf("Connection failed: %s\n", $connection->connect_error);
           exit();
       }
-      //Consulta para sacar las reparaciones.
+      //Consulta para sacar los usuarios.
       if ($result = $connection->query("SELECT * FROM usuarios;")) {
       } else {
 
@@ -132,6 +139,7 @@
               echo "<td>".$obj->ciudad."</td>";
               echo "<td>".$obj->email."</td>";
               echo "<td>".$obj->pass."</td>";
+              echo "<td>".$obj->rol."</td>";
               echo "</tr>";
           }
           //Cerrar la consulta y la conexion
@@ -140,19 +148,12 @@
 
           unset($connection);
           ?>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+    
+      </table>
+      
+      <br/><br/>
+        
+    <a href="insertar_usuario.php">Volver al panel</a>
+                
   </body>
 </html>
