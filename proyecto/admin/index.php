@@ -56,13 +56,7 @@
                         <a class="page-scroll" href="index.html">Inicio</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="sesion/">Iniciar sesión</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="registrarse/">Registrarse</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#portfolio"></a>
+                        <a class="page-scroll" href="../sesion/logout.php">Cerrar sesión</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact"></a>
