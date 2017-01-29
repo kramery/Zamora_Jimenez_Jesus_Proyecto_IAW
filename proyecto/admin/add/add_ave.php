@@ -12,19 +12,19 @@
     <title>Creative - Start Bootstrap Theme</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../estilos/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../estilos/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 
     <!-- Custom Fonts -->
-    <link href="../estilos/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../../estilos/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
     <!-- Plugin CSS -->
-    <link href="../estilos/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="../../estilos/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link href="../estilos/css/creative.min.css" rel="stylesheet">
+    <link href="../../estilos/css/creative.min.css" rel="stylesheet">
     
     <style>
       span {
@@ -33,13 +33,6 @@
         text-align: left;
       }
     </style>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
 </head>
 
@@ -59,13 +52,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="../">Inicio</a>
+                        <a class="page-scroll" href="../../">Inicio</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="../sesion/">Iniciar sesión</a>
+                        <a class="page-scroll" href="../../sesion/">Iniciar sesión</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="../registrarse/">Registrarse</a>
+                        <a class="page-scroll" href="../../registrarse/">Registrarse</a>
                     </li>
                     
                     <li>
@@ -106,7 +99,7 @@
                 $tmp_file = $_FILES['image']['tmp_name'];
 
                 //Dir where we are going to store the file
-                $target_dir = "img/";
+                $target_dir = "../img/";
 
                 //Full name of the file.
                 $target_file = strtolower($target_dir . basename($_FILES['image']['name']));
@@ -166,6 +159,9 @@
             } else {
                 
               echo "<br/><br/><br/><h2>Tus datos han añadido correctamente en el sistema</h2>";
+              echo "<br/><br/>";
+              echo "<a href='../'><h4 id='homeHeading'>Volver al panel</h4></a>";
+              echo "<br/><br/>";
                 
             }
                 
@@ -180,18 +176,18 @@
    
 
     <!-- jQuery -->
-    <script src="../estilos/vendor/jquery/jquery.min.js"></script>
+    <script src="../../estilos/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../estilos/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../estilos/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="../estilos/vendor/scrollreveal/scrollreveal.min.js"></script>
-    <script src="../estilos/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="../../estilos/vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="../../estilos/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
     <!-- Theme JavaScript -->
-    <script src="../estilos/js/creative.min.js"></script>
+    <script src="../../estilos/js/creative.min.js"></script>
 
 </body>
 

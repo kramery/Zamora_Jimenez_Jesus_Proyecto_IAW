@@ -92,7 +92,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="add_usuario.php" class="page-scroll btn btn-default btn-xl sr-button">Añadir usuario</a>                    
+                    <a href="add/add_usuario.php" class="page-scroll btn btn-default btn-xl sr-button">Añadir usuario</a>                    
                 </div>
             </div>
         </div>
@@ -103,7 +103,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="add_ave.php" class="page-scroll btn btn-default btn-xl sr-button">Añadir nueva ave</a>                    
+                    <a href="add/add_ave.php" class="page-scroll btn btn-default btn-xl sr-button">Añadir nueva ave</a>                    
                 </div>
             </div>
         </div>
@@ -113,7 +113,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="#" class="page-scroll btn btn-default btn-xl sr-button">Borrar usuarios</a>                    
+                    <a href="remove/remove_user.php" class="page-scroll btn btn-default btn-xl sr-button">Borrar usuarios</a>                    
                 </div>
             </div>
         </div>
@@ -123,7 +123,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="#" class="page-scroll btn btn-default btn-xl sr-button">Borrar ave</a>                    
+                    <a href="remove/remove_ave.php" class="page-scroll btn btn-default btn-xl sr-button">Borrar ave</a>                    
                 </div>
             </div>
         </div>
