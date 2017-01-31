@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Creative - Start Bootstrap Theme</title>
+    <title>Registro</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../estilos/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -33,13 +33,6 @@
         text-align: left;
       }
     </style>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
 </head>
 
@@ -147,7 +140,7 @@
             echo "<br/><br/><br/><br/><br/><br/>";
             echo "<h3 id='homeHeading'>¡Genial! Tus datos han sido añadidos correctamente</h3>";
             echo "<br/><br/>";
-            echo "<a href='../'><h4 id='homeHeading'>Volver al panel</h4></a>";
+            echo "<a href='../'><h4 id='homeHeading'>Volver al inicio</h4></a>";
             echo "<br/><br/>";
                 
             }

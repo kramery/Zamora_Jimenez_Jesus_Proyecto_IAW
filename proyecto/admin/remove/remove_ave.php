@@ -55,10 +55,7 @@
                         <a class="page-scroll" href="../../">Inicio</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="../../sesion/">Iniciar sesión</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="../../registrarse/">Registrarse</a>
+                        <a class="page-scroll" href="../sesion/logout.php">Cerrar sesión</a>
                     </li>
                     
                     <li>
@@ -116,7 +113,7 @@
               echo "<td>".$obj->descripcion."</td>";
               echo "<td><form id='form0' method='get'>
                           <a href='rem_ave.php?id=$obj->codigo'>
-                            <img src='borrar.png' width='30%';/>
+                            <img src='../add/img/borrar.png' width='30%';/>
                           </a>
                         </form></td>";
               echo "</tr>";

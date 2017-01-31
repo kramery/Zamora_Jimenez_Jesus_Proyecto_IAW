@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Creative - Start Bootstrap Theme</title>
+    <title>Borrar usuario</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../../estilos/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -55,10 +55,7 @@
                         <a class="page-scroll" href="../../">Inicio</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="../../sesion/">Iniciar sesión</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="../../registrarse/">Registrarse</a>
+                        <a class="page-scroll" href="../../sesion/logout.php">Cerrar sesión</a>
                     </li>
                     
                     <li>
@@ -74,7 +71,7 @@
     <header>
         <div class="header-content">
             <div class="header-content-inner">
-                <h1 id="homeHeading">Borrar usuarios</h1>
+                <h2 id="homeHeading">Borrar usuarios</h2>
                 <hr>
                 
                 <table border="1">

@@ -55,10 +55,7 @@
                         <a class="page-scroll" href="../../">Inicio</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="../../sesion/">Iniciar sesión</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="../../registrarse/">Registrarse</a>
+                        <a class="page-scroll" href="../sesion/logout.php">Cerrar sesión</a>
                     </li>
                     
                     <li>
@@ -99,7 +96,7 @@
                 $tmp_file = $_FILES['image']['tmp_name'];
 
                 //Dir where we are going to store the file
-                $target_dir = "../img/";
+                $target_dir = "img/";
 
                 //Full name of the file.
                 $target_file = strtolower($target_dir . basename($_FILES['image']['name']));

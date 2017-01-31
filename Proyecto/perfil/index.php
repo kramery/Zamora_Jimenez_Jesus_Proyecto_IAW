@@ -1,14 +1,10 @@
 <?php
   session_start();
 
-    
-    if ($_SESSION["rol"]!='Administrador'){
-        session_destroy();
-      header("Location:../");
-   }
+  $username=$_SESSION["username"];
+
+
     ?>
-
-
 
 
 <!DOCTYPE html>
@@ -22,7 +18,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Inicio</title>
+    <title>Perfil</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../estilos/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -41,16 +37,10 @@
     <!-- Theme CSS -->
     <link href="../estilos/css/creative.min.css" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
 </head>
 
-<body id="page-top">
+<body id="">
 
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -62,7 +52,6 @@
                 <a class="navbar-brand page-scroll" href="#page-top">Proyecto IAW</a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -82,70 +71,59 @@
     </nav>
 
     
+    
     <?php
     
-    echo "<aside class='capa'>";
-        echo "<br/><br/>";  
-        echo "<div class='container text-center'>";
-            echo "<div class='call-to-action'>";
-                echo "<h2 id='blanco'>Bienvenido </h2>";
-           echo " </div>";
-        echo "</div>";
-    echo "</aside>";
+        echo "<section class='bg-primary' id='about'>";
+            echo "<div class='container'>";
+                echo "<div class='row'>";
+                    echo "<div class='col-lg-8 col-lg-offset-2 text-center'>";
+                        echo "<h2 id='blanco'>Bienvenido $username</h2>";                  
+                    echo "</div>";
+                echo "</div>";
+            echo "</div>";
+        echo "</section>";
+            
+    ?>
+    
+    <br/>
+    
+        <?php
+      
+      $connection = new mysqli("localhost", "root", "", "proyecto"); //Realizo la conexión a la base de datos.
         
-        ?>
+      if ($connection->connect_errno) { //Compruebo que se ha conectado bien a la base de datos.
+          printf("Connection failed: %s\n", $connection->connect_error);
+          exit();
+      }
+      // Guardo en la variable result una consulta a la base de datos para sacar 
+      // todas las columnas de la tabla reparaciones
+      if ($result = $connection->query("SELECT * FROM aves;")) {
+      } else {
+      // En caso de error saco la salida del error.
+            echo "Error: " . $sql . "<br>" . mysqli_error($connection);
+      }
+      // Bajo el encabezado de la tabla muestro las columnas de la consulta a la base de datos
+      // almacenado en result
+        echo "<div class=container>";
+        while($obj = $result->fetch_object()) {
+              echo "<div class='row text-center'>";
+                  echo "<div class='col-md-4'>".$obj->nombre."</div>";
+                  echo "<div class='col-md-4'>".$obj->color."</div>";
+                  echo "<div class='col-md-4'><img src='../admin/add/$obj->imagen'></div>";
+              echo "</div>";
+              
+        }
+        echo "</div>";
     
-    <section class="bg-primary" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="add/add_usuario.php" class="page-scroll btn btn-default btn-xl sr-button">Añadir usuario</a>                    
-                </div>
-            </div>
-        </div>
-    </section>
+          
+          $result->close(); // Cierro la consulta
+          unset($obj);
+
+          unset($connection); // Cierro la conexión
+          ?>
     
-    
-    <section class="bg-primary-azul" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="add/add_ave.php" class="page-scroll btn btn-default btn-xl sr-button">Añadir nueva ave</a>                    
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="bg-primary-amarillo" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="remove/remove_user.php" class="page-scroll btn btn-default btn-xl sr-button">Borrar usuarios</a>                    
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="bg-primary-verde" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="remove/remove_ave.php" class="page-scroll btn btn-default btn-xl sr-button">Borrar ave</a>                    
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="bg-primary-naranja" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="../" class="page-scroll btn btn-default btn-xl sr-button">Volver a Inicio</a>                    
-                </div>
-            </div>
-        </div>
-    </section>
-  
+
 
     <!-- jQuery -->
     <script src="../estilos/vendor/jquery/jquery.min.js"></script>
