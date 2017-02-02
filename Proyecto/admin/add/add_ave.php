@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Creative - Start Bootstrap Theme</title>
+    <title>Añadir ave</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../../estilos/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -74,10 +74,9 @@
                 <h2 id="homeHeading">Añadir ave</h2>
                 <hr>
                     
-                  <?php if (!isset($_POST['codigo']))  :?>
+                  <?php if (!isset($_POST['nombre']))  :?>
               <form action="add_ave.php" method="post" enctype="multipart/form-data">
                 <br/>
-                  <span>Codigo: </span><input type="number"  name="codigo" required><br><br/>
                   <span>Nombre: </span><input type="text" name="nombre"><br/><br/>
                   <span>Color: </span><input type="text" name="color"><br/><br/>
                   <span>Especie: </span><input type="text" name="especie"><br/><br/>
@@ -141,13 +140,12 @@
                     
                     
                    
-                    $codigo = $_POST['codigo'];
                     $nombre = $_POST['nombre'];
                     $color = $_POST['color'];
                     $especie = $_POST['especie'];
                     $descripcion = $_POST['descripcion'];
 
-                  $consulta="INSERT INTO aves VALUES('$codigo','$nombre','$color','$especie','$target_file','$descripcion')";
+                  $consulta="INSERT INTO aves VALUES('','$nombre','$color','$especie','$target_file','$descripcion')";
 
   	        $result = $connection->query($consulta);
 

@@ -1,6 +1,8 @@
 <?php
   session_start();
 
+$username=$_SESSION["username"];
+
     
     if ($_SESSION["rol"]!='Administrador'){
         session_destroy();
@@ -88,7 +90,7 @@
         echo "<br/><br/>";  
         echo "<div class='container text-center'>";
             echo "<div class='call-to-action'>";
-                echo "<h2 id='blanco'>Bienvenido </h2>";
+                echo "<h2 id='blanco'>Bienvenido $username</h2>";
            echo " </div>";
         echo "</div>";
     echo "</aside>";

@@ -3,6 +3,11 @@
 
   $username=$_SESSION["username"];
 
+    if ($_SESSION["username"]===''){
+            session_destroy();
+          header("Location:../");
+       }
+
 
     ?>
 
