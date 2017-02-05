@@ -136,7 +136,7 @@
 
   	        $result = $connection->query($consulta);
 
-  	        if (!$result) {
+  	        if (!$result) { 
    		         
                 echo "<br/><br/><br/><br/><br/><br/>";
                 echo "<h2 id='homeHeading'>Error en la inserción de los datos</h2>";
