@@ -1,3 +1,21 @@
+<?php
+  session_start();
+
+  $username=$_SESSION["username"];
+  $rol=$_SESSION["rol"];
+  $dni=$_SESSION["dni"];
+  $pass=$_SESSION["pass"];
+
+    if ($_SESSION["rol"]===null){
+            session_destroy();
+          header("Location:../");
+       }
+
+    ?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +27,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Registro</title>
+    <title>Cambiar contraseña</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../estilos/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,7 +63,7 @@
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Start Bootstrap</a>
+                <a class="navbar-brand page-scroll" href="#page-top">Proyecto php</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -55,10 +73,7 @@
                         <a class="page-scroll" href="../">Inicio</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="../sesion/">Iniciar sesión</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="../registrarse/">Registrarse</a>
+                        <a class="page-scroll" href="../sesion/logout.php">Cerrar sesión</a>
                     </li>
                     
                     <li>
@@ -74,11 +89,12 @@
     <header>
         <div class="header-content">
             <div class="header-content-inner">
-                <h1 id="homeHeading">Registrarse</h1>
+                <h2 id="homeHeading">Cambiar contraseña</h2>
                 <hr>
                     
-                  <?php
-		if (!isset($_POST["nombre"])) : ?>
+    <?php
+                
+		if (!isset($_POST["pass_antigua"])) : ?>
         <form method="post">
             <?php
               //CREATING THE CONNECTION
@@ -96,54 +112,59 @@
               
             
             <br>
-              <span>DNI: </span><input type="number"  name="dni" required><br><br/>
-              <span>Nombre: </span><input type="text" name="nombre"><br/><br/>
-              <span>Apellidos: </span><input type="text" name="apellido"><br/><br/>
-              <span>Pais: </span><input type="text" name="pais"><br/><br/>
-              <span>Ciudad: </span><input type="text" name="ciudad"><br/><br/>
-              <span>Email: </span><input type="email" name="email"><br/><br/>
-              <span>Contraseña: </span><input type="password" name="pass"><br/><br/>
-              <input class="btn btn-primary btn-xl page-scroll" name="Submit" value="Enviar" type="submit" >
+            
+              <span>Antigua contraseña</span><input type="text"  name="pass_antigua" required><br><br/>
+              <span>Nueva contraseña </span><input type="text" name="pass_nueva"><br/><br/>
+              <input class="btn btn-primary btn-xl page-scroll" name="Submit" value="Enviar" type="submit">
+            
         </form>
 
       <?php else: ?>
       
 
       <?php
-           
-
-            //CREATING THE CONNECTION
-      	    $connection = new mysqli("localhost", "root", "", "proyecto");
-
-           //TESTING IF THE CONNECTION WAS RIGHT
-           if ($connection->connect_errno) {
-           	 printf("Connection failed: %s\n", $connection->connect_error);
-	           exit();
-	         }
-
-
                 
-            $consulta= "INSERT INTO usuarios VALUES(".$_POST['dni'].",'".$_POST['nombre']."','".$_POST["apellido"]."','".$_POST['pais']."','".$_POST['ciudad']."','".$_POST['email']."','".$_POST['pass']."','usuario')";
+      
+              $connection = new mysqli("localhost", "root", "", "proyecto");
+
+              //TESTING IF THE CONNECTION WAS RIGHT
+              if ($connection->connect_errno) {
+              	 printf("Connection failed: %s\n", $connection->connect_error);
+   	           exit();
+   	         }     
+                
+                
             
-
-  	        $result = $connection->query($consulta);
-
-  	        if (!$result) {
-   		         
-                echo "<br/><br/><br/><br/><br/><br/>";
-                echo "<h2 id='homeHeading'>Error en la inserción de los datos</h2>";
-                echo "<br/><br/><br/>";
-                
-                
+             if ($_POST['pass_antigua']!=$pass){
+                 
+                echo "<h4 id='homeHeading'>Contraseña antigua inválida</h4><br/>";
+                echo "<a href='cambiar_pass.php'><h4 id='homeHeading'>Volver intentarlo</h4></a>";
+                 
             } else {
-             
-            echo "<br/><br/><br/><br/><br/><br/>";
-            echo "<h3 id='homeHeading'>¡Genial! Tus datos han sido añadidos correctamente</h3>";
-            echo "<br/><br/>";
-            echo "<a href='../'><h4 id='homeHeading'>Volver al inicio</h4></a>";
-            echo "<br/><br/>";
-                
-            }
+                 
+                $consulta1 = "UPDATE usuarios set pass='$_POST[pass_nueva]' where dni=$dni";
+
+                $result = $connection->query($consulta1);
+
+                if (!$result) {
+
+                    echo "<br/><br/><br/><br/><br/><br/>";
+                    echo "<h2 id='homeHeading'>Error en el cambio de la contraseña</h2>";
+                    echo "<br/><br/><br/>";
+
+
+                } else {
+
+                echo "<br/><br/><br/><br/><br/><br/>";
+                echo "<h3 id='homeHeading'>¡Genial! Tu contraseña ha sido actualizada correctamente</h3>";
+                echo "<br/><br/>";
+                echo "<a href='index.php'><h4 id='homeHeading'>Volver al perfil</h4></a>";
+                echo "<br/><br/>";
+
+                }
+                 
+                }
+
 
      ?>
 

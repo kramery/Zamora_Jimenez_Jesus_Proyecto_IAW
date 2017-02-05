@@ -2,8 +2,11 @@
   session_start();
 
   $username=$_SESSION["username"];
+  $rol=$_SESSION["rol"];
+  $dni=$_SESSION["dni"];
+  $pass=$_SESSION["pass"];
 
-    if ($_SESSION["username"]===''){
+    if ($_SESSION["rol"]===null){
             session_destroy();
           header("Location:../");
        }
@@ -70,9 +73,7 @@
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container-fluid -->
     </nav>
 
     
@@ -83,7 +84,20 @@
             echo "<div class='container'>";
                 echo "<div class='row'>";
                     echo "<div class='col-lg-8 col-lg-offset-2 text-center'>";
-                        echo "<h2 id='blanco'>Bienvenido $username</h2>";                  
+                        echo "<h2 id='blanco'>Bienvenido/a $username</h2>";
+                    echo "</div>";
+                echo "</div>";
+            echo "</div>";
+        echo "</section>";
+    
+    
+        echo "<section class='bg-primary-naranja' id='about'>";
+            echo "<div class='container'>";
+                echo "<div class='row'>";
+                    echo "<div class='col-lg-8 col-lg-offset-2 text-center'>";
+                        echo "<a href='cambiar_pass.php' class='page-scroll btn btn-default btn-xl sr-button'>Cambiar contraseña</a>";
+    
+                        echo "<span> </span><a href='avistar_ave.php' class='page-scroll btn btn-default btn-xl sr-button'>¿Has visto un ave?</a>";  
                     echo "</div>";
                 echo "</div>";
             echo "</div>";
@@ -103,7 +117,7 @@
       }
       // Guardo en la variable result una consulta a la base de datos para sacar 
       // todas las columnas de la tabla reparaciones
-      if ($result = $connection->query("SELECT * FROM aves;")) {
+      if ($result = $connection->query("SELECT * FROM avistar a join aves av on a.aves_codigo = av.codigo where a.usuarios_dni=$dni;")) {
       } else {
       // En caso de error saco la salida del error.
             echo "Error: " . $sql . "<br>" . mysqli_error($connection);
@@ -113,13 +127,15 @@
         echo "<div class=container>";
         while($obj = $result->fetch_object()) {
               echo "<div class='row text-center'>";
-                  echo "<div class='col-md-4'>".$obj->nombre."</div>";
-                  echo "<div class='col-md-4'>".$obj->color."</div>";
+                  echo "<div class='col-md-2'></div>";
                   echo "<div class='col-md-4'><img src='../admin/add/$obj->imagen'></div>";
+                  echo "<div class='col-md-4'>".$obj->nombre."</div>";
+                  echo "<div class='col-md-2'></div>";
               echo "</div>";
               
         }
-        echo "</div>";
+    
+    
     
           
           $result->close(); // Cierro la consulta

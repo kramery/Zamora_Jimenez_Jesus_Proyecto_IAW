@@ -27,7 +27,9 @@
 
                 
                 $_SESSION["username"]=$obj->nombre;
+                $_SESSION["dni"]=$obj->dni;
                 $_SESSION["rol"] = $obj->rol;
+                $_SESSION["pass"] = $obj->pass;
 
 
 
