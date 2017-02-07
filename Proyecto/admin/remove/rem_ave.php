@@ -91,7 +91,7 @@
 
                   if ($result = $connection->query("select * from aves where codigo=$codigoave;")) {
 
-                    // BorrO las facturas con ese id de reparación
+                    // Borro las facturas con ese id de reparación
 
                     if ($result2 = $connection->query("delete from aves where codigo=$codigoave;")) {
 
