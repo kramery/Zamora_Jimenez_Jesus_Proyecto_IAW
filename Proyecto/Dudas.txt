@@ -1,2 +1,0 @@
-como hacer para que no pueda acceder a /perfil sin haberme logueado
-antes

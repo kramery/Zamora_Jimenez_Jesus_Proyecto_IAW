@@ -134,13 +134,30 @@
    	         }     
                 
                 
+            if ($pass_actual = $connection->query("select * from usuarios where dni=$dni;")) {
             
-             if ($_POST['pass_antigua']!=$pass){
+                
+                } else {
+              // En caso de error saco la salida del error.
+                    echo "Error: " . $sql . "<br>" . mysqli_error($connection);
+              }
+              
+                while($obj = $pass_actual->fetch_object()) {
+                    
+                  //  $pass_actual =  $obj->pass;
+                    $obj->pass;
+                    
+                    $contrasena2 = $_POST['pass_antigua'];
+            
+             if ($obj->pass!=$contrasena2){
                  
                 echo "<h4 id='homeHeading'>Contraseña antigua inválida</h4><br/>";
                 echo "<a href='cambiar_pass.php'><h4 id='homeHeading'>Volver intentarlo</h4></a>";
+
                  
             } else {
+                 
+            
                  
                 $consulta1 = "UPDATE usuarios set pass='$_POST[pass_nueva]' where dni=$dni";
 
@@ -148,7 +165,7 @@
 
                 if (!$result) {
 
-                    echo "<br/><br/><br/><br/><br/><br/>";
+                    echo "<br/><br/><br/><br/>";
                     echo "<h2 id='homeHeading'>Error en el cambio de la contraseña</h2>";
                     echo "<br/><br/><br/>";
 
@@ -164,6 +181,10 @@
                 }
                  
                 }
+
+                }
+                
+            
 
 
      ?>
