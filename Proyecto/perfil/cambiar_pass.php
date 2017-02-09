@@ -170,7 +170,7 @@
                     echo "<br/><br/><br/>";
 
 
-                } else {
+                } else { 
 
                 echo "<br/><br/><br/><br/><br/><br/>";
                 echo "<h3 id='homeHeading'>¡Genial! Tu contraseña ha sido actualizada correctamente</h3>";
