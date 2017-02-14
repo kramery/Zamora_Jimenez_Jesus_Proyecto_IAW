@@ -1,3 +1,19 @@
+<?php
+  session_start();
+
+  $dni=$_SESSION["dni"];
+  $pass=$_SESSION["pass"];
+  $rol=$_SESSION["rol"];
+
+    if ($_SESSION["rol"]===null){
+            session_destroy();
+          header("Location:../");
+       }
+
+
+    ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -150,13 +166,29 @@
   	        $result = $connection->query($consulta);
 
   	        if (!$result) {
-   		         echo "Query Error";
+                
+   		         echo "Error en la inserción de datos";
+                
             } else {
                 
-              echo "<br/><br/><br/><h2>Tus datos han añadido correctamente en el sistema</h2>";
-              echo "<br/><br/>";
-              echo "<a href='../'><h4 id='homeHeading'>Volver al panel</h4></a>";
-              echo "<br/><br/>";
+                
+                if ($rol==="Administrador") {
+
+                    echo "<br/><br/><br/><h2>Tus datos han añadido correctamente en el sistema</h2>";
+                    echo "<br/><br/>";
+                    echo "<a href='../'><h4 id='homeHeading'>Volver al panel</h4></a>";
+                    echo "<br/><br/>";
+
+
+                 } else {
+
+                      echo "<br/><br/><br/><h2>Tus datos han añadido correctamente en el sistema</h2>";
+                      echo "<br/><br/>";
+                      echo "<a href='../../perfil/'><h4 id='homeHeading'>Volver a inicio</h4></a>";
+                      echo "<br/><br/>";
+
+                }
+                
                 
             }
                 

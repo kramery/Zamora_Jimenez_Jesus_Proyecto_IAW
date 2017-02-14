@@ -68,16 +68,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a class="page-scroll" href="../">Inicio</a>
-                    </li>
+                    
                     <li>
                         <a class="page-scroll" href="../sesion/logout.php">Cerrar sesión</a>
                     </li>
                     
-                    <li>
-                        <a class="page-scroll" href="#contact"></a>
-                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -88,7 +83,8 @@
     <header>
         <div class="header-content">
             <div class="header-content-inner">
-                <h2 id="homeHeading">Avistar ave</h2>
+                <h2 id="homeHeading">Avistar ave</h2><br/>
+                <a href='../admin/add/add_ave.php' class='page-scroll btn btn-default btn-xl sr-button'>¿Quieres añadir un nuevo ave?</a>
                 <hr>
                     
                   <?php
@@ -110,9 +106,16 @@
               
             
             <br>
-                  <span>Ave: </span><select name="codigo" required><br>
             
-                        <?php
+            
+                <div class="row">
+                  <div class="col-md-5"></div>
+                  <div class="col-md-1"><span>Ave: </span></div>
+                    
+                  <div class="col-md-1"><select name="codigo" required>
+                      
+                      <?php
+                      
                           $connection = new mysqli("localhost", "root", "", "proyecto");
                           if ($connection->connect_errno) {
                              printf("Connection failed: %s\n", $connection->connect_error);
@@ -137,10 +140,30 @@
                            exit();
                          }
                         ?>
-                        </select><br><br/>
-              <span>Fecha: </span><input type="date" name="fecha"><br/><br/>
-              <span>Sitio: <textarea rows="3" cols="20" name="sitio"></textarea><br/><br/>
-              <input href="#about" class="btn btn-primary btn-xl page-scroll" name="Submit" value="Enviar" type="submit">
+                        </select></div>
+                  <div class="col-md-5"></select></div>
+                </div><br/>
+                
+                <div class="row">
+                  <div class="col-md-5"></div>
+                  <div class="col-md-1"><span>Fecha: </span></div>
+                  <div class="col-md-1"><input type="date" name="fecha"></div>
+                  <div class="col-md-5"></div>
+                </div><br/>
+                
+                <div class="row">
+                  <div class="col-md-5"></div>
+                  <div class="col-md-1"><span>Sitio: </span></div>
+                  <div class="col-md-1"><textarea rows="3" cols="20" name="sitio"></textarea></div>
+                  <div class="col-md-5"></div>
+                </div><br/>
+                
+                <div class="row">
+                  <div class="col-md-5"></div>
+                  <div class="col-md-2"><input href="#about" class="btn btn-primary btn-xl page-scroll" name="Submit" value="Enviar" type="submit"></div>
+                  <div class="col-md-5"></div>
+                </div>
+                
         </form>
 
       <?php else: ?>
