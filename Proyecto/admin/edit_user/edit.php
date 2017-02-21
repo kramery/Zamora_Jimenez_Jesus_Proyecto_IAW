@@ -1,8 +1,6 @@
 <?php
   session_start();
 
-$username=$_SESSION["username"];
-$dni=$_SESSION["dni"];
 
     
     if ($_SESSION["rol"]!='Administrador'){
@@ -11,7 +9,9 @@ $dni=$_SESSION["dni"];
    }
 
 $connection = new mysqli("localhost", "root", "", "proyecto");
-$codigo=$_GET['id'];
+
+
+
 
 ?>
 
@@ -76,7 +76,7 @@ $codigo=$_GET['id'];
                         <a class="page-scroll" href="../">Inicio</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="../sesion/logout.php">Cerrar sesión</a>
+                        <a class="page-scroll" href="../../sesion/logout.php">Cerrar sesión</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact"></a>
@@ -124,6 +124,7 @@ $codigo=$_GET['id'];
 
           
           //Conexion a la base de datos (localhost, usuario, contraseña, bd).
+            $codigo=$_GET['id'];
 
           $consulta = "select * from usuarios where dni=$codigo";
             
@@ -142,13 +143,13 @@ $codigo=$_GET['id'];
 
                 echo "<form action='edit.php' method='post'>";
 
-                  echo "<input type='hidden' value='$obj->dni' name='dni'>";
-                  echo "<p>Nombre: <input value='$obj->nombre' name='nombre'></p>";
+                  echo "<input type='hidden' value='$obj->dni' name='dni' type='text'>";
+                  echo "<p>Nombre: <input value='$obj->nombre' name='nombre' type='text'></p>";
                   echo "<p>Apellidos: <input value='$obj->apellidos' name='apellidos' type='text'></p>";
-                  echo "<p>Pais: <input value='$obj->pais' name='pais'></p>";
-                  echo "<p>Ciudad: <input value='$obj->ciudad' name='ciudad'></p>";
+                  echo "<p>Pais: <input value='$obj->pais' name='pais' type='text'></p>";
+                  echo "<p>Ciudad: <input value='$obj->ciudad' name='ciudad' type='text'></p>";
                   echo "<p>Contraseña: <input value='$obj->pass' name='pass' type='text'></p>";
-                  echo "<p>Email: <input value='$obj->email' name='apellidos' type='text' required></p>";
+                  echo "<p>Email: <input value='$obj->email' name='email' type='text'></p>";
                   echo "<p>ROL: <input value='$obj->rol' name='rol' type='text' ></p>";
 
 
@@ -157,17 +158,32 @@ $codigo=$_GET['id'];
                 echo "</form>";
 
               }
+              
           } else {
-            echo "Wrong Query";
-          }
+                echo "Wrong Query";
+                } 
 
         } else {
             
             
             
-            $consulta="update usuarios set dni='".$_POST["dni"]."', nombre='".$_POST["nombre"]."',  apellidos='".$_POST["apellidos"]."', pais='".$_POST["pais"]."', ciudad='".$_POST["ciudad"]."', pass='".$_POST["pass"]."', pass='".$_POST["pass"]."', rol='".$_POST["rol"]."' where dni=$dni";
+            if ($insert = $connection->query("update usuarios set dni='".$_POST["dni"]."', nombre='".$_POST["nombre"]."',  apellidos='".$_POST["apellidos"]."', pais='".$_POST["pais"]."', ciudad='".$_POST["ciudad"]."', pass='".$_POST["pass"]."', pass='".$_POST["pass"]."', rol='".$_POST["rol"]."' where dni=".$_POST['dni'].";")) {
+
+                          
+                          
+            echo "<h3 id='homeHeading'>Datos modificados</h3>";
             
-                var_dump($consulta);
+           
+
+
+             } else {
+                
+                mysqli_error($connection);
+                
+             }
+            
+            
+             
         }
 
     ?>

@@ -109,8 +109,8 @@ $username=$_SESSION["username"];
         <div class="col-lg-4 text-center">
             
     <table border="1px solid black" align="center">
-     <thead align="center">  <!-- Aquí creo en encabezado de la tabla, con el nombre de las columnas de la tabla
-                    reparaciones --> 
+     <thead align="center"> 
+         
        <tr>
          <th>Nombre</th>
          <th>Editar</th>
