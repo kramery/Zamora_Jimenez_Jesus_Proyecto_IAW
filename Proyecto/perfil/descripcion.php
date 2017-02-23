@@ -1,18 +1,17 @@
 <?php
   session_start();
 
-  $username=$_SESSION["username"];
-  $rol=$_SESSION["rol"];
-  $dni=$_SESSION["dni"];
-  $pass=$_SESSION["pass"];
+$username=$_SESSION["username"];
 
-    if ($_SESSION["rol"]===null){
+if ($_SESSION["rol"]===null){
             session_destroy();
           header("Location:../");
        }
 
 
     ?>
+
+
 
 
 <!DOCTYPE html>
@@ -26,7 +25,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Perfil</title>
+    <title>Inicio</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../estilos/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -48,7 +47,7 @@
 
 </head>
 
-<body id="">
+<body id="page-top">
 
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -60,50 +59,51 @@
                 <a class="navbar-brand page-scroll" href="#page-top">Proyecto IAW</a>
             </div>
 
+            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
+                        <a class="page-scroll" href="../">Inicio</a>
+                    </li>
+                    <li>
                         <a class="page-scroll" href="../sesion/logout.php">Cerrar sesión</a>
                     </li>
-                    
+                    <li>
+                        <a class="page-scroll" href="#contact"></a>
+                    </li>
                 </ul>
             </div>
+            
         </div>
+        
     </nav>
 
     
-    
     <?php
     
-        echo "<section class='bg-primary' id='about'>";
-            echo "<div class='container'>";
-                echo "<div class='row'>";
-                    echo "<div class='col-lg-8 col-lg-offset-2 text-center'>";
-                        echo "<h2 id='blanco'>Bienvenido/a $username</h2>";
-                    echo "</div>";
-                echo "</div>";
-            echo "</div>";
-        echo "</section>";
+    echo "<aside class='capa'>";
+        echo "<br/><br/>";  
+        echo "<div class='container text-center'>";
+            echo "<div class='call-to-action'>";
+                echo "<h2 id='blanco'>Descripción del ave</h2>";
+           echo " </div>";
+        echo "</div>";
+    echo "</aside>";
+        
+        ?>
     
     
-        echo "<section class='bg-primary-naranja' id='about'>";
-            echo "<div class='container'>";
-                echo "<div class='row'>";
-                    echo "<div class='col-lg-8 col-lg-offset-2 text-center'>";
-                        echo "<a href='cambiar_pass.php' class='page-scroll btn btn-default btn-xl sr-button'>Cambiar contraseña</a>";
     
-                        echo "<span> </span><a href='avistar_ave.php' class='page-scroll btn btn-default btn-xl sr-button'>¿Has visto un ave?</a>";  
-                    echo "</div>";
-                echo "</div>";
-            echo "</div>";
-        echo "</section>";
-            
-    ?>
+    <section class="bg-primary-amarillo" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                     
     
-    <br/>
-    
-        <?php
-      
+    <?php
+        
+      $codigo=$_GET['id'];
+        
       $connection = new mysqli("localhost", "root", "", "proyecto"); //Realizo la conexión a la base de datos.
         
       if ($connection->connect_errno) { //Compruebo que se ha conectado bien a la base de datos.
@@ -112,34 +112,76 @@
       }
       // Guardo en la variable result una consulta a la base de datos para sacar 
       // todas las columnas de la tabla reparaciones
-      if ($result = $connection->query("SELECT * FROM avistar a join aves av on a.aves_codigo = av.codigo where a.usuarios_dni=$dni;")) {
+      if ($result = $connection->query("SELECT * FROM aves where codigo=$codigo;")) {
       } else {
       // En caso de error saco la salida del error.
             echo "Error: " . $sql . "<br>" . mysqli_error($connection);
       }
       // Bajo el encabezado de la tabla muestro las columnas de la consulta a la base de datos
       // almacenado en result
-        echo "<div class=container>";
-        while($obj = $result->fetch_object()) {
-              echo "<div class='row text-center'>";
-                  echo "<div class='col-md-2'></div>";
-                  echo "<div class='col-md-4'><a href='descripcion.php?id=$obj->codigo'><img src='../admin/add/$obj->imagen'></a></div>";
-                  echo "<div class='col-md-4'><a href='descripcion.php?id=$obj->codigo'>".$obj->nombre."</a></div>";
-                  echo "<div class='col-md-2'></div>";
-              echo "</div>";
+          while($obj = $result->fetch_object()) {
+                echo "<div class='row text-center'>";
+                echo "<div class='col-lg-8 text-center'>".$obj->nombre.". Es un ave que habita en</div>";
+                echo "</div>";
               
-        }
-    
-    
-    
+                echo "</br>";
+              
+                echo "<div class='row'>";
+              echo "<div class='col-lg-9 '><img src='../admin/add/$obj->imagen'/> <p id='parrafo'>".$obj->descripcion."</p></div>";  
+                echo "</div>";
+              
+              
+            echo "<div class='row text-center'>";
+              
+            if ($result = $connection->query("SELECT count(aves_codigo) FROM avistar where aves_codigo=$codigo;")) {
+                
+                echo $result;
+                
+              } else {
+              // En caso de error saco la salida del error.
+                    echo "Error: " . $sql . "<br>" . mysqli_error($connection);
+              }
+              
+            echo "</div>";  
+              
+              
+              
+              
+              
+            
+          }
           
           $result->close(); // Cierro la consulta
           unset($obj);
 
           unset($connection); // Cierro la conexión
           ?>
+     <br>
+                    
+                    
+                    
+                    
+                </div>
+        
+            </div>
+        </div>
+
+    </section>
+    
+    
     
 
+    
+    <section class="bg-primary-naranja" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <a href="index.php" class="page-scroll btn btn-default btn-xl sr-button">Volver al panel</a>                    
+                </div>
+            </div>
+        </div>
+    </section>
+  
 
     <!-- jQuery -->
     <script src="../estilos/vendor/jquery/jquery.min.js"></script>
