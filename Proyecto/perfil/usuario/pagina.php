@@ -25,13 +25,13 @@ if ($_SESSION["rol"]===null){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Inicio</title>
+    <title>Usuarios</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../estilos/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../estilos/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- mi estilo CSS -->
-    <link href="../estilos/css/estilo.css" rel="stylesheet">
+    <link href="../../estilos/css/estilo.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="../estilos/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -39,10 +39,10 @@ if ($_SESSION["rol"]===null){
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
     <!-- Plugin CSS -->
-    <link href="../estilos/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="../../estilos/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link href="../estilos/css/creative.min.css" rel="stylesheet">
+    <link href="../../estilos/css/creative.min.css" rel="stylesheet">
 
 
 </head>
@@ -85,7 +85,7 @@ if ($_SESSION["rol"]===null){
         echo "<br/><br/>";  
         echo "<div class='container text-center'>";
             echo "<div class='call-to-action'>";
-                echo "<h2 id='blanco'>Descripción del ave</h2>";
+                echo "<h2 id='blanco'>Este ave ha sido avistado por:</h2>";
            echo " </div>";
         echo "</div>";
     echo "</aside>";
@@ -103,6 +103,8 @@ if ($_SESSION["rol"]===null){
     <?php
         
       $codigo=$_GET['id'];
+                    
+      var_dump($codigo);  
         
       $connection = new mysqli("localhost", "root", "", "proyecto"); //Realizo la conexión a la base de datos.
         
@@ -112,7 +114,7 @@ if ($_SESSION["rol"]===null){
       }
       // Guardo en la variable result una consulta a la base de datos para sacar 
       // todas las columnas de la tabla reparaciones
-      if ($result = $connection->query("SELECT * FROM aves where codigo=$codigo;")) {
+      if ($result = $connection->query("SELECT * FROM avistar where aves_codigo=$codigo;")) {
       } else {
       // En caso de error saco la salida del error.
             echo "Error: " . $sql . "<br>" . mysqli_error($connection);
@@ -121,34 +123,11 @@ if ($_SESSION["rol"]===null){
       // almacenado en result
           while($obj = $result->fetch_object()) {
                 echo "<div class='row text-center'>";
-                echo "<div class='col-lg-8 text-center'>".$obj->nombre.". Es un ave que habita en</div>";
+                echo "<div class='col-lg-8 text-center'>$obj->usuarios_dni</div>";
                 echo "</div>";
               
                 echo "</br>";
               
-                echo "<div class='row'>";
-                    echo "<div class='col-lg-9 '><img src='../admin/add/$obj->imagen'/> <p id='parrafo'>".$obj->descripcion."</p></div>";  
-                echo "</div>";
-              
-              
-            echo "<div class='row text-center'>";
-              
-              
-            $consulta =  "SELECT count(aves_codigo) as numero FROM avistar where aves_codigo=$codigo;";
-           
-            if ($result = $connection->query($consulta)) {
-                
-                
-            } else {
-          // En caso de error saco la salida del error.
-                echo "Error: " . $sql . "<br>" . mysqli_error($connection);
-          }
-          // Bajo el encabezado de la tabla muestro las columnas de la consulta a la base de datos
-          // almacenado en result
-              while($obj = $result->fetch_object()) {    
-                    echo "Este ave ha sido avistado <a href='usuario/pagina.php?id=$codigo'>".$obj->numero."</a> veces por varios usuarios";
-
-              }
           }
             
           
@@ -186,15 +165,15 @@ if ($_SESSION["rol"]===null){
   
 
     <!-- jQuery -->
-    <script src="../estilos/vendor/jquery/jquery.min.js"></script>
+    <script src="../../estilos/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../estilos/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../estilos/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="../estilos/vendor/scrollreveal/scrollreveal.min.js"></script>
-    <script src="../estilos/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="../../estilos/vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="../../estilos/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
     <!-- Theme JavaScript -->
     <script src="../estilos/js/creative.min.js"></script>

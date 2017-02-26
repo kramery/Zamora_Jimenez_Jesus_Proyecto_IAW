@@ -146,7 +146,7 @@ if ($_SESSION["rol"]===null){
           // Bajo el encabezado de la tabla muestro las columnas de la consulta a la base de datos
           // almacenado en result
               while($obj = $result->fetch_object()) {    
-                    echo "Este ave ha sido avistado <a href='usuario/pagina.php?id=$codigo'>".$obj->numero."</a> veces por varios usuarios";
+                    echo "Este ave ha sido avistado <a href='usuario/pagina.php?id=$obj->aves_codigo'>".$obj->numero."</a> veces por varios usuarios";
 
               }
           }
