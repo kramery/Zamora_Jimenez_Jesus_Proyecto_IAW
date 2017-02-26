@@ -127,29 +127,39 @@ if ($_SESSION["rol"]===null){
                 echo "</br>";
               
                 echo "<div class='row'>";
-              echo "<div class='col-lg-9 '><img src='../admin/add/$obj->imagen'/> <p id='parrafo'>".$obj->descripcion."</p></div>";  
+                    echo "<div class='col-lg-9 '><img src='../admin/add/$obj->imagen'/> <p id='parrafo'>".$obj->descripcion."</p></div>";  
                 echo "</div>";
               
               
             echo "<div class='row text-center'>";
               
-            if ($result = $connection->query("SELECT count(aves_codigo) FROM avistar where aves_codigo=$codigo;")) {
+              
+            $consulta =  "SELECT count(aves_codigo) as numero FROM avistar where aves_codigo=$codigo;";
+           
+            if ($result = $connection->query($consulta)) {
                 
-                echo $result;
                 
-              } else {
-              // En caso de error saco la salida del error.
-                    echo "Error: " . $sql . "<br>" . mysqli_error($connection);
-              }
-              
-            echo "</div>";  
-              
-              
-              
-              
-              
-            
+            } else {
+          // En caso de error saco la salida del error.
+                echo "Error: " . $sql . "<br>" . mysqli_error($connection);
           }
+          // Bajo el encabezado de la tabla muestro las columnas de la consulta a la base de datos
+          // almacenado en result
+              while($obj = $result->fetch_object()) {    
+                    echo "Este ave ha sido avistado ".$obj->numero;
+
+                
+
+            
+              
+              
+              
+              
+              
+              }
+          }
+            
+          
           
           $result->close(); // Cierro la consulta
           unset($obj);
