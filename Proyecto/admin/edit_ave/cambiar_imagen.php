@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDITAR CAMISETA</title>
-    <link rel="stylesheet" type="text/css" href=" ">
+    <title>Editar imagen</title>
+    <link rel="stylesheet" type="text/css" href="">
     <style>
       span {
         width: 100px;
@@ -17,9 +16,12 @@
      
       
       <?php 
+       
+        
+        if (!isset($_FILES["bird"])) :
+      ?>
 
-        if (!isset($_POST["bird"])) : ?>
-
+      
         <?php 
 
         $connection = new mysqli("localhost", "root", "", "proyecto");
@@ -28,23 +30,28 @@
             exit();
         }
            
-        $query="SELECT * FROM aves WHERE codigo=4";
+        $query="SELECT * FROM aves WHERE codigo=1";
+      
         if ($result = $connection->query($query)) {
+            
             $obj = $result->fetch_object();
+            
             $codigo=$obj->codigo;
+            
             $imagen=$obj->imagen;
-            var_dump($imagen);
+            
+            // var_dump($codigo);
             
         }
       
         ?>
       
       
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" action="cambiar_imagen.php" enctype="multipart/form-data">
           
             <span>Imagen:</span><input type="file" name="bird" id="pajaro" required />
-            <img src='<?php echo '../add/'.$imagen; ?>' /><br><br>               
-            <br><span><input type="submit" value="Enviar" /></span><br><br>
+            <img src='<?php echo '../add/'.$imagen; ?>' /><br/>               
+            <br><span><input type="submit" value="Enviar" /></span><br/>
         </form>
 
       <?php else: ?>
@@ -52,19 +59,24 @@
         <?php
         
             $valid= true;
-        var_dump($_FILES);
+      
+      var_dump($_POST);
+            var_dump("HOLA");
+      
+            var_dump($_FILES);
             
-        if ($_FILES['imagen']['name']!="") {
-            $tmp_file = $_FILES['imagen']['tmp_name'];
-            $target_dir = "../add";
-            $target_file = strtolower($target_dir . basename($_FILES['imagen']['name']));
+            
+        if ($_FILES['bird']['name']!="") {
+            $tmp_file = $_FILES['bird']['tmp_name'];
+            $target_dir = "../add/";
+            $target_file = strtolower($target_dir . basename($_FILES['bird']['name']));
 
             if (file_exists($target_file)) {
               echo "Sorry, file already exists.";
               $valid = false;
             }
             //Check the size of the file. Up to 2Mb
-            if ($_FILES['imagen']['size'] > (2048000)) {
+            if ($_FILES['bird']['size'] > (2048000)) {
                     $valid = false;
                     echo 'Oops!  Your file\'s size is to large.';
                 }
@@ -89,14 +101,17 @@
             
         //MAKING A UPDATE
         
-        $imagen_nueva = $_POST['bird'];
+        $imagen_nueva = $target_file;
+            echo "<br/><br/><br/>";
+            var_dump($imagen_nueva);
+            echo "<br/><br/><br/>";
         
-        $consulta1="Update aves SET 
-        imagen='$imagen_nueva'";
+        $consulta1="Update aves SET imagen='img/".$_FILES['bird']['name']."' where codigo=1";
+            var_dump($consulta1);
             
-        var_dump($_POST("imagen"));
+        var_dump($imagen_nueva);
         
-        if ($_FILES['imagen']['name']!="") {
+        if ($_FILES['bird']['name']!="") {
             $consulta1=$consulta1.",imagen='$target_file'";
         }
             
@@ -112,7 +127,7 @@
         }
         ?>
             
-      <?php endif ?>
+      <?php endif; ?>
 
   </body>
 </html>
