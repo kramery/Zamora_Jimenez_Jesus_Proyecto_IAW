@@ -97,7 +97,7 @@
       }
       // Guardo en la variable result una consulta a la base de datos para sacar 
       // todas las columnas de la tabla reparaciones
-      if ($result = $connection->query("SELECT a.imagen, av.nombre FROM avistar a where a.usuarios_dni=$dni;")) {
+      if ($result = $connection->query("SELECT av.imagen, av.nombre FROM avistar a join aves av on a.aves_codigo = av.codigo where a.usuarios_dni=$codigo")) {
       } else {
       // En caso de error saco la salida del error.
             echo "Error: " . $sql . "<br>" . mysqli_error($connection);
@@ -109,7 +109,7 @@
               echo "<div class='row text-center'>";
                   echo "<div class='col-md-2'></div>";
                   echo "<div class='col-md-4'><img src='../admin/add/$obj->imagen'></a></div>";
-                  echo "<div class='col-md-4'></div>";
+                  echo "<div class='col-md-4'>$obj->nombre</div>";
                   echo "<div class='col-md-2'></div>";
               echo "</div>";
               

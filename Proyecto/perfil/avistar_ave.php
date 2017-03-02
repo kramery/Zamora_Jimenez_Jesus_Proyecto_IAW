@@ -183,7 +183,7 @@
 
 
                 
-            $consulta= "INSERT INTO avistar VALUES('".$_POST["sitio"]."','".$_POST['fecha']."',$dni,'".$_POST["codigo"]."')";
+            $consulta= "INSERT INTO avistar VALUES('".$_POST["sitio"]."','".$_POST['fecha']."',$dni,'".$_POST["codigo"]."','')";
             
             var_dump($consulta);
 
