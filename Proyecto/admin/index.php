@@ -105,6 +105,8 @@ $username=$_SESSION["username"];
                     
                     <a href="add/add_ave.php" class="page-scroll btn btn-default btn-xl sr-button">Añadir ave</a>
                     
+                    <a href="add/add_pais.php" class="page-scroll btn btn-default btn-xl sr-button">Añadir país</a>
+                    
                 </div>
             </div>
         </div>
@@ -119,6 +121,8 @@ $username=$_SESSION["username"];
                     <a href="remove/remove_user.php" class="page-scroll btn btn-default btn-xl sr-button">Borrar usuario</a>
                     
                     <a href="remove/remove_ave.php" class="page-scroll btn btn-default btn-xl sr-button">Borrar ave</a>
+                    
+                    <a href="remove/remove_pais.php" class="page-scroll btn btn-default btn-xl sr-button">Borrar país</a>
                 </div>
             </div>
         </div>
@@ -129,27 +133,19 @@ $username=$_SESSION["username"];
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                       <a href="edit_user/" class="page-scroll btn btn-default btn-xl sr-button">Editar usuario</a>
-                    <a href="edit_ave/" class="page-scroll btn btn-default btn-xl sr-button">Editar ave</a>                  
+                      <a href="edit_ave/" class="page-scroll btn btn-default btn-xl sr-button">Editar ave</a>                  
                 </div>
             </div>
         </div>
     </section>
     
-    <section class="bg-primary-verde" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="remove/remove_ave.php" class="page-scroll btn btn-default btn-xl sr-button">Vacio</a>                    
-                </div>
-            </div>
-        </div>
-    </section>
+    
     
     <section class="bg-primary-naranja" id="about">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="../" class="page-scroll btn btn-default btn-xl sr-button">Volver a Inicio</a>                    
+                    <a href="../sesion/logout.php" class="page-scroll btn btn-default btn-xl sr-button">Cerrar sesión</a>                    
                 </div>
             </div>
         </div>

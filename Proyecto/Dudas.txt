@@ -1,1 +1,5 @@
-Por que no me puedo contagiar de sida ????
+No puedo borrar países.
+
+El archivo cambiar_imagen.php sigue sin funcionar. He conseguido insertar
+las imagenes en la carpeta y que salga por pantalla, pero la query
+no me la da por buena aunque por workbench si funiona.
