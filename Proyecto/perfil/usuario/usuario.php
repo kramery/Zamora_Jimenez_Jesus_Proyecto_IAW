@@ -1,17 +1,14 @@
 <?php
   session_start();
 
-$username=$_SESSION["username"];
 
-if ($_SESSION["rol"]===null){
+    if ($_SESSION["rol"]===null){
             session_destroy();
           header("Location:../");
        }
 
 
     ?>
-
-
 
 
 <!DOCTYPE html>
@@ -25,7 +22,7 @@ if ($_SESSION["rol"]===null){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Usuarios</title>
+    <title>Perfil</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../../estilos/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -34,7 +31,7 @@ if ($_SESSION["rol"]===null){
     <link href="../../estilos/css/estilo.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../estilos/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../../estilos/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
@@ -47,7 +44,7 @@ if ($_SESSION["rol"]===null){
 
 </head>
 
-<body id="page-top">
+<body id="">
 
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -59,49 +56,39 @@ if ($_SESSION["rol"]===null){
                 <a class="navbar-brand page-scroll" href="#page-top">Proyecto IAW</a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="../">Inicio</a>
-                    </li>
-                    <li>
                         <a class="page-scroll" href="../sesion/logout.php">Cerrar sesión</a>
                     </li>
+                    
                 </ul>
             </div>
-            
         </div>
-        
     </nav>
 
     
-    <?php
-    
-    echo "<aside class='capa'>";
-        echo "<br/><br/>";  
-        echo "<div class='container text-center'>";
-            echo "<div class='call-to-action'>";
-                echo "<h2 id='blanco'>Este ave ha sido avistado por:</h2>";
-           echo " </div>";
-        echo "</div>";
-    echo "</aside>";
-        
-        ?>
-    
-    
-    
-    <section class="bg-primary-amarillo" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                     
     
     <?php
-        
+    
+        echo "<section class='bg-primary' id='about'>";
+            echo "<div class='container'>";
+                echo "<div class='row'>";
+                    echo "<div class='col-lg-8 col-lg-offset-2 text-center'>";
+                        echo "<h2 id='blanco'>Perfil de </h2>";
+                    echo "</div>";
+                echo "</div>";
+            echo "</div>";
+        echo "</section>";
+            
+    ?>
+    
+    <br/>
+    
+        <?php
+    
       $codigo=$_GET['id'];
-                    
-        
+      
       $connection = new mysqli("localhost", "root", "", "proyecto"); //Realizo la conexión a la base de datos.
         
       if ($connection->connect_errno) { //Compruebo que se ha conectado bien a la base de datos.
@@ -110,55 +97,34 @@ if ($_SESSION["rol"]===null){
       }
       // Guardo en la variable result una consulta a la base de datos para sacar 
       // todas las columnas de la tabla reparaciones
-      if ($result = $connection->query("SELECT u.nombre, a.usuarios_dni FROM usuarios u join avistar a on u.dni=a.usuarios_dni where a.aves_codigo=$codigo;")) {
+      if ($result = $connection->query("SELECT av.imagen, av.nombre FROM avistar a join aves av on a.aves_codigo = av.codigo where a.usuarios_dni=$codigo")) {
       } else {
       // En caso de error saco la salida del error.
             echo "Error: " . $sql . "<br>" . mysqli_error($connection);
       }
       // Bajo el encabezado de la tabla muestro las columnas de la consulta a la base de datos
       // almacenado en result
-          while($obj = $result->fetch_object()) {
-                echo "<div class='row text-center'>";
-                echo "<div class='col-lg-12 text-center'><a href='usuario.php?id=$obj->usuarios_dni'>$obj->nombre</a></div>";
-                echo "</div>";
+        echo "<div class=container>";
+        while($obj = $result->fetch_object()) {
+              echo "<div class='row text-center'>";
+                  echo "<div class='col-md-2'></div>";
+                  echo "<div class='col-md-4'><img src='../admin/add/$obj->imagen'></a></div>";
+                  echo "<div class='col-md-4'>$obj->nombre</div>";
+                  echo "<div class='col-md-2'></div>";
+              echo "</div>";
               
-                echo "</br>";
-              
-          }
-            
-          
+        }
+    
+    
+    
           
           $result->close(); // Cierro la consulta
           unset($obj);
 
           unset($connection); // Cierro la conexión
           ?>
-     <br>
-                    
-                    
-                    
-                    
-                </div>
-        
-            </div>
-        </div>
-
-    </section>
-    
-    
     
 
-    
-    <section class="bg-primary-naranja" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="../index.php" class="page-scroll btn btn-default btn-xl sr-button">Volver al panel</a>                    
-                </div>
-            </div>
-        </div>
-    </section>
-  
 
     <!-- jQuery -->
     <script src="../../estilos/vendor/jquery/jquery.min.js"></script>
@@ -172,7 +138,7 @@ if ($_SESSION["rol"]===null){
     <script src="../../estilos/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
     <!-- Theme JavaScript -->
-    <script src="../estilos/js/creative.min.js"></script>
+    <script src="../../estilos/js/creative.min.js"></script>
 
 </body>
 
