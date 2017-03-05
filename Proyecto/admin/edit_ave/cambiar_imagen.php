@@ -40,8 +40,6 @@
             
             $imagen=$obj->imagen;
             
-            // var_dump($codigo);
-            
         }
       
         ?>
@@ -68,7 +66,7 @@
             
         if ($_FILES['bird']['name']!="") {
             $tmp_file = $_FILES['bird']['tmp_name'];
-            $target_dir = "../add/";
+            $target_dir = "../add/img/";
             $target_file = strtolower($target_dir . basename($_FILES['bird']['name']));
 
             if (file_exists($target_file)) {
@@ -112,7 +110,7 @@
         var_dump($imagen_nueva);
         
         if ($_FILES['bird']['name']!="") {
-            $consulta1=$consulta1.",imagen='$target_file'";
+            $consulta1=$consulta1."imagen='$target_file'";
         }
             
             

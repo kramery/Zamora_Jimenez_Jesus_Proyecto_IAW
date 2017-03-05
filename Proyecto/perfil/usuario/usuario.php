@@ -59,7 +59,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="../sesion/logout.php">Cerrar sesión</a>
+                        <a class="page-scroll" href="../../sesion/logout.php">Cerrar sesión</a>
                     </li>
                     
                 </ul>
@@ -75,7 +75,7 @@
             echo "<div class='container'>";
                 echo "<div class='row'>";
                     echo "<div class='col-lg-8 col-lg-offset-2 text-center'>";
-                        echo "<h2 id='blanco'>Perfil de </h2>";
+                        echo "<h2 id='blanco'>Usuario</h2>";
                     echo "</div>";
                 echo "</div>";
             echo "</div>";
