@@ -95,6 +95,36 @@
                 <br/>
                   <span>Nombre: </span><input type="text" name="nombre"><br/><br/>
                   <span>Color: </span><input type="text" name="color"><br/><br/>
+                  <span>Pais: </span>
+                  <select name="codigo" required>
+                      
+                      <?php
+                      
+                          $connection = new mysqli("localhost", "root", "", "proyecto");
+                          if ($connection->connect_errno) {
+                             printf("Connection failed: %s\n", $connection->connect_error);
+                          exit();
+                         }
+            
+                         $result = $connection->query("SELECT * from pais;");
+            
+                
+            
+                         if ($result) {
+                             
+                           while ($obj=$result->fetch_object()) {
+                              echo "<option  value='$obj->nombre'>";                              
+                              echo $obj->nombre;
+                              echo "</option>";
+                           }
+                             
+                         } else {
+                             
+                           printf("Query failed: %s\n", $connection->connect_error);
+                           exit();
+                         }
+                        ?>
+                        </select><br/><br/>
                   <span>Especie: </span><input type="text" name="especie"><br/><br/>
                   <span>Imagen: </span><input type="file" name="image" required /><br/><br/>
                   <span>Descripción: </span><textarea cols="50" rows="2" name="descripcion"></textarea><br/><br/>
