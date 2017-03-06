@@ -142,9 +142,16 @@
                   //  $pass_actual =  $obj->pass;
                     $obj->pass;
                     
-                    $contrasena2 = $_POST['pass_antigua'];
+                    // aqui en esta variable almaceno la contraseña antigua encriptada
+                    
+                    $contra = $obj->pass;
+                    
+                    // en esta variable almaceno la contraseña introducida codificada en md5, que debe
+                    // coincidir con la almacenada en la base de datos.
+                    
+                    $contrasena2 = md5($_POST['pass_antigua']);
             
-             if ($obj->pass!=$contrasena2){
+             if ($contra!=$contrasena2){
                  
                 echo "<h4 id='homeHeading'>Contraseña antigua inválida</h4><br/>";
                 echo "<a href='cambiar_pass.php'><h4 id='homeHeading'>Volver intentarlo</h4></a>";
@@ -154,7 +161,7 @@
                  
             
                  
-                $consulta1 = "UPDATE usuarios set pass='$_POST[pass_nueva]' where dni=$dni";
+                $consulta1 = "UPDATE usuarios set pass=md5('$_POST[pass_nueva]') where dni=$dni";
 
                 $result = $connection->query($consulta1);
 

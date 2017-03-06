@@ -1,17 +1,21 @@
 <?php
   session_start();
 
-  $dni=$_SESSION["dni"];
-  $pass=$_SESSION["pass"];
-  $rol=$_SESSION["rol"];
 
-    if ($_SESSION["rol"]===null){
-            session_destroy();
-          header("Location:../");
-       }
+    
+    if ($_SESSION["rol"]!='Administrador'){
+        session_destroy();
+      header("Location:../");
+   }
+
+$connection = new mysqli("localhost", "root", "", "proyecto");
 
 
-    ?>
+
+
+?>
+
+
 
 
 <!DOCTYPE html>
@@ -25,11 +29,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Añadir ave</title>
+    <title>Añadir Ave</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../../estilos/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    
+    <!-- mi estilo CSS -->
+    <link href="../../estilos/css/estilo.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="../../estilos/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -50,30 +56,36 @@
       }
     </style>
 
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
 
 <body id="page-top">
 
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top affix">
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Start Bootstrap</a>
+                <a class="navbar-brand page-scroll" href="#page-top">Proyecto IAW</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="../../">Inicio</a>
+                        <a class="page-scroll" href="../">Inicio</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="../sesion/logout.php">Cerrar sesión</a>
+                        <a class="page-scroll" href="../../sesion/logout.php">Cerrar sesión</a>
                     </li>
-                    
                     <li>
                         <a class="page-scroll" href="#contact"></a>
                     </li>
@@ -84,21 +96,40 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <header>
-        <div class="header-content">
-            <div class="header-content-inner">
-                <h2 id="homeHeading">Añadir ave</h2>
-                <hr>
-                    
-                  <?php if (!isset($_POST['nombre']))  :?>
+    
+    <?php
+    
+    echo "<aside class='capa'>";
+        echo "<br/><br/>";  
+        echo "<div class='container text-center'>";
+            echo "<div class='call-to-action'>";
+                echo "<h2 id='blanco'>Añadir Ave</h2>";
+           echo " </div>";
+        echo "</div>";
+    echo "</aside>";
+        
+        ?>
+    
+    
+    
+    <section class="bg-primary-amarillo" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                     
+    <div class="row">
+        <div class="col-lg-2 text-center"></div>
+        <div class="col-lg-8 text-center">
+            
+       <?php if (!isset($_POST['nombre']))  :?>
               <form action="add_ave.php" method="post" enctype="multipart/form-data">
                 <br/>
                   <span>Nombre: </span><input type="text" name="nombre"><br/><br/>
                   <span>Color: </span><input type="text" name="color"><br/><br/>
                   <span>Pais: </span>
-                  <select name="codigo" required>
-                      
-                      <?php
+                  <select name="pais" required >      
+    
+    <?php
                       
                           $connection = new mysqli("localhost", "root", "", "proyecto");
                           if ($connection->connect_errno) {
@@ -113,7 +144,7 @@
                          if ($result) {
                              
                            while ($obj=$result->fetch_object()) {
-                              echo "<option  value='$obj->nombre'>";                              
+                              echo "<option  value='$obj->nombre' name='pais'>"; 
                               echo $obj->nombre;
                               echo "</option>";
                            }
@@ -124,10 +155,11 @@
                            exit();
                          }
                         ?>
-                        </select><br/><br/>
+                      
+                      </select><br/><br/>
                   <span>Especie: </span><input type="text" name="especie"><br/><br/>
                   <span>Imagen: </span><input type="file" name="image" required /><br/><br/>
-                  <span>Descripción: </span><textarea cols="50" rows="2" name="descripcion"></textarea><br/><br/>
+                  <span>Descripción: </span><textarea cols="20" rows="2" name="descripcion"></textarea><br/><br/>
                   <input class="btn btn-primary btn-xl page-scroll" name="submit" value="Enviar" type="submit">
                 
               </form>
@@ -190,8 +222,11 @@
                     $color = $_POST['color'];
                     $especie = $_POST['especie'];
                     $descripcion = $_POST['descripcion'];
+                    $pais = $_POST['pais'];
 
                   $consulta="INSERT INTO aves VALUES('','$nombre','$color','$especie','$target_file','$descripcion')";
+                    
+                //  $consulta="INSERT INTO se_encuentra VALUES('','$nombre','$pais')";
 
   	        $result = $connection->query($consulta);
 
@@ -201,21 +236,19 @@
                 
             } else {
                 
+                $rol = $_SESSION["rol"];
+                
                 
                 if ($rol==="Administrador") {
 
-                    echo "<br/><br/><br/><h2>Tus datos han añadido correctamente en el sistema</h2>";
-                    echo "<br/><br/>";
-                    echo "<a href='../'><h4 id='homeHeading'>Volver al panel</h4></a>";
-                    echo "<br/><br/>";
+                    echo "<h2>Tus datos han añadido correctamente en el sistema</h2>";
+    
 
 
                  } else {
 
-                      echo "<br/><br/><br/><h2>Tus datos han añadido correctamente en el sistema</h2>";
-                      echo "<br/><br/>";
+                      echo "<h2>Tus datos han añadido correctamente en el sistema</h2>";
                       echo "<a href='../../perfil/'><h4 id='homeHeading'>Volver a inicio</h4></a>";
-                      echo "<br/><br/>";
 
                 }
                 
@@ -229,8 +262,33 @@
             ?>
 
           <?php endif ?> 
+            
+            </div>
+        </div>   
+                    
+                    
+                    
+        </div>
+        <div class="col-lg-1 text-center"></div>
+            </div>
+        </div>
+    </div>
+    </section>
+    
+    
+    
 
-   
+    
+    <section class="bg-primary-naranja" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <a href="../" class="page-scroll btn btn-default btn-xl sr-button">Volver al panel</a>                    
+                </div>
+            </div>
+        </div>
+    </section>
+  
 
     <!-- jQuery -->
     <script src="../../estilos/vendor/jquery/jquery.min.js"></script>
@@ -241,7 +299,7 @@
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="../../estilos/vendor/scrollreveal/scrollreveal.min.js"></script>
-    <script src="../../estilos/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="../estilos/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
     <!-- Theme JavaScript -->
     <script src="../../estilos/js/creative.min.js"></script>

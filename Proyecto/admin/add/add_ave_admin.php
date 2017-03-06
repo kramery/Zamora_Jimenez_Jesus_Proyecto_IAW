@@ -103,7 +103,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
         echo "<br/><br/>";  
         echo "<div class='container text-center'>";
             echo "<div class='call-to-action'>";
-                echo "<h2 id='blanco'>Borrar Ave</h2>";
+                echo "<h2 id='blanco'>Añadir Ave</h2>";
            echo " </div>";
         echo "</div>";
     echo "</aside>";
@@ -121,46 +121,137 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
         <div class="col-lg-2 text-center"></div>
         <div class="col-lg-8 text-center">
             
-      <?php
-                $connection = new mysqli("localhost", "root", "", "proyecto"); // Me conecto a la base de datos
+       <?php if (!isset($_POST['nombre']))  :?>
+              <form action="add_ave.php" method="post" enctype="multipart/form-data">
+                <br/>
+                  <span>Nombre: </span><input type="text" name="nombre"><br/><br/>
+                  <span>Color: </span><input type="text" name="color"><br/><br/>
+                  <span>Pais: </span>
+                  <select name="pais" required >      
+    
+    <?php
+                      
+                          $connection = new mysqli("localhost", "root", "", "proyecto");
+                          if ($connection->connect_errno) {
+                             printf("Connection failed: %s\n", $connection->connect_error);
+                          exit();
+                         }
+            
+                         $result = $connection->query("SELECT * from pais;");
+            
+                
+            
+                         if ($result) {
+                             
+                           while ($obj=$result->fetch_object()) {
+                              echo "<option  value='$obj->nombre' name='pais'>"; 
+                              echo $obj->nombre;
+                              echo "</option>";
+                           }
+                             
+                         } else {
+                             
+                           printf("Query failed: %s\n", $connection->connect_error);
+                           exit();
+                         }
+                        ?>
+                      
+                      </select><br/><br/>
+                  <span>Especie: </span><input type="text" name="especie"><br/><br/>
+                  <span>Imagen: </span><input type="file" name="image" required /><br/><br/>
+                  <span>Descripción: </span><textarea cols="20" rows="2" name="descripcion"></textarea><br/><br/>
+                  <input class="btn btn-primary btn-xl page-scroll" name="submit" value="Enviar" type="submit">
+                
+              </form>
+            <div>
 
+          <?php else: ?>
 
-                if ($connection->connect_errno) { // compruebo que no hay errores
-                    printf("Connection failed: %s\n", $connection->connect_error);
-                    exit();
+          <?php
+
+                //Temp file. Where the uploaded file is stored temporary
+                $tmp_file = $_FILES['image']['tmp_name'];
+
+                //Dir where we are going to store the file
+                $target_dir = "img/";
+
+                //Full name of the file.
+                $target_file = strtolower($target_dir . basename($_FILES['image']['name']));
+
+                //Can we upload the file
+                $valid= true;
+
+                //Check if the file already exists
+                if (file_exists($target_file)) {
+                  echo "Esa imagen ya está en el sistema.";
+                  $valid = false;
                 }
-                // Hago que el GET sea un ID
-                foreach ($_GET as $key => $codigoave)
 
-                  // Verifico que esa reparación no existe ya  
+                //Check the size of the file. Up to 2Mb
+                if ($_FILES['image']['size'] > (2048000)) {
+			            $valid = false;
+			            echo 'Oops!  Your file\'s size is to large.';
+		            }
 
-                  if ($result = $connection->query("select * from aves where codigo=$codigoave;")) {
-
-                    // Borro las facturas con ese id de reparación
-
-                    if ($result2 = $connection->query("delete from aves where codigo=$codigoave;")) {
-
-                      // Borro la reparación
-
-                      if ($result2 = $connection->query("delete from aves where codigo=$codigoave;")) {
-
-                          echo "El ave con código $codigoave ha sido eliminada de la base de datos.<br>";
-                          echo "<br/><br/><br/>";
-                          echo "<br/><a href='../'><h3 id='homeHeading'>Volver al panel</h3>";
+                //Check the file extension: We need an image not any other different type of file
+                $file_extension = pathinfo($target_file, PATHINFO_EXTENSION); // We get the entension
+                if ($file_extension!="jpg" && $file_extension!="jpeg" && $file_extension!="png" && $file_extension!="gif") {
+                  $valid = false;
+                  echo "Only JPG, JPEG, PNG & GIF files are allowed";
+                }
 
 
-                        } else {
-                            mysqli_error($connection);
-                      }
-                    } else {
-                      }
-                          mysqli_error($connection);
-                    }
-                        mysqli_error($connection);
+                if ($valid) {
 
-                 ?>
-     <br>
-   </table> 
+                  //Put the file in its place
+                  move_uploaded_file($tmp_file, $target_file);
+
+                  //CREATING THE CONNECTION
+                    $connection = new mysqli("localhost", "root", "", "proyecto");
+
+                   //TESTING IF THE CONNECTION WAS RIGHT
+                   if ($connection->connect_errno) {
+                     printf("Connection failed: %s\n", $connection->connect_error);
+                       exit();
+                     }
+                    
+                    
+                    
+                   
+                    $nombre = $_POST['nombre'];
+                    $color = $_POST['color'];
+                    $especie = $_POST['especie'];
+                    $descripcion = $_POST['descripcion'];
+                    $pais = $_POST['pais'];
+
+                  $consulta="INSERT INTO aves VALUES('','$nombre','$color','$especie','$target_file','$descripcion')";
+                    
+                //  $consulta="INSERT INTO se_encuentra VALUES('','$nombre','$pais')";
+
+  	        $result = $connection->query($consulta);
+
+  	        if (!$result) {
+                
+   		         echo "Error en la inserción de datos";
+                
+            } else {
+                
+
+                      echo "<h2>Tus datos han añadido correctamente en el sistema</h2>";
+                      echo "<a href='../'><h4 id='homeHeading'>Volver al panel</h4></a>";
+
+                }
+                
+                
+            }
+                
+            
+
+
+                
+            ?>
+
+          <?php endif ?> 
             
             </div>
         </div>   

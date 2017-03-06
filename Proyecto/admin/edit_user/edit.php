@@ -148,7 +148,6 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
                   echo "<p>Apellidos: <input value='$obj->apellidos' name='apellidos' type='text'></p>";
                   echo "<p>Pais: <input value='$obj->pais' name='pais' type='text'></p>";
                   echo "<p>Ciudad: <input value='$obj->ciudad' name='ciudad' type='text'></p>";
-                  echo "<p>Contraseña: <input value='$obj->pass' name='pass' type='text'></p>";
                   echo "<p>Email: <input value='$obj->email' name='email' type='text'></p>";
                   echo "<p>ROL: <input value='$obj->rol' name='rol' type='text' ></p>";
 
@@ -167,7 +166,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
             
             
             
-            if ($insert = $connection->query("update usuarios set dni='".$_POST["dni"]."', nombre='".$_POST["nombre"]."',  apellidos='".$_POST["apellidos"]."', pais='".$_POST["pais"]."', ciudad='".$_POST["ciudad"]."', pass='".$_POST["pass"]."', pass='".$_POST["pass"]."', rol='".$_POST["rol"]."' where dni=".$_POST['dni'].";")) {
+            if ($insert = $connection->query("update usuarios set dni='".$_POST["dni"]."', nombre='".$_POST["nombre"]."',  apellidos='".$_POST["apellidos"]."', pais='".$_POST["pais"]."', ciudad='".$_POST["ciudad"]."', email='".$_POST["email"]."', pass='', rol='".$_POST["rol"]."' where dni=".$_POST['dni'].";")) {
 
                           
                           

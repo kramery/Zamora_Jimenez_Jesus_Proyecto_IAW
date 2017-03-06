@@ -17,7 +17,7 @@
             $password = $_POST['password'];
 
 
-            $sql = "SELECT * FROM usuarios WHERE nombre = '$username' AND pass='$password'";
+            $sql = "SELECT * FROM usuarios WHERE nombre = '$username' AND pass=md5('$password')";
 
             $result = $connection->query($sql);
             $obj=$result->fetch_object();

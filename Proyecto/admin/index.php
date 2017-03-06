@@ -68,7 +68,7 @@ $username=$_SESSION["username"];
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="../">Inicio</a>
+                        <a class="page-scroll" href="index.php">Inicio</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="../sesion/logout.php">Cerrar sesión</a>
@@ -103,7 +103,7 @@ $username=$_SESSION["username"];
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <a href="add/add_usuario.php" class="page-scroll btn btn-default btn-xl sr-button">Añadir usuario</a>
                     
-                    <a href="add/add_ave.php" class="page-scroll btn btn-default btn-xl sr-button">Añadir ave</a>
+                    <a href="add/add_ave_admin.php" class="page-scroll btn btn-default btn-xl sr-button">Añadir ave</a>
                     
                     <a href="add/add_pais.php" class="page-scroll btn btn-default btn-xl sr-button">Añadir país</a>
                     

@@ -60,10 +60,6 @@
                     <li>
                         <a class="page-scroll" href="../registrarse/">Registrarse</a>
                     </li>
-                    
-                    <li>
-                        <a class="page-scroll" href="#contact"></a>
-                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -123,7 +119,7 @@
 
 
                 
-            $consulta= "INSERT INTO usuarios VALUES(".$_POST['dni'].",'".$_POST['nombre']."','".$_POST["apellido"]."','".$_POST['pais']."','".$_POST['ciudad']."','".$_POST['email']."','".$_POST['pass']."','usuario')";
+            $consulta= "INSERT INTO usuarios VALUES(".$_POST['dni'].",'".$_POST['nombre']."','".$_POST["apellido"]."','".$_POST['pais']."','".$_POST['ciudad']."','".$_POST['email']."',md5('".$_POST['pass']."'),'usuario')";
             
 
   	        $result = $connection->query($consulta);

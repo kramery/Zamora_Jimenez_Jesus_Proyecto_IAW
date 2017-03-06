@@ -29,7 +29,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Añadir Ave</title>
+    <title>Editar usuario</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../../estilos/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -103,7 +103,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
         echo "<br/><br/>";  
         echo "<div class='container text-center'>";
             echo "<div class='call-to-action'>";
-                echo "<h2 id='blanco'>Borrar Ave</h2>";
+                echo "<h2 id='blanco'>Editar usuario</h2>";
            echo " </div>";
         echo "</div>";
     echo "</aside>";
@@ -118,49 +118,84 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                      
     <div class="row">
-        <div class="col-lg-2 text-center"></div>
-        <div class="col-lg-8 text-center">
+        <div class="col-lg-3 text-center"></div>
+        <div class="col-lg-6 text-center">
             
+    
+    <?php
+		if (!isset($_POST["nombre"])) : ?>
+        <form method="post">
+            <?php
+              //CREATING THE CONNECTION
+              $connection = new mysqli("localhost", "root", "", "proyecto");
+
+              //TESTING IF THE CONNECTION WAS RIGHT
+              if ($connection->connect_errno) {
+              	 printf("Connection failed: %s\n", $connection->connect_error);
+   	           exit();
+   	         }
+
+             $result = $connection->query("SELECT * FROM usuarios;"); 
+
+            ?>
+            
+            <br>
+              <span>DNI: </span><input type="number"  name="dni" required><br><br/>
+              <span>Nombre: </span><input type="text" name="nombre"><br/><br/>
+              <span>Apellidos: </span><input type="text" name="apellido"><br/><br/>
+              <span>Pais: </span><input type="text" name="pais"><br/><br/>
+              <span>Ciudad: </span><input type="text" name="ciudad"><br/><br/>
+              <span>Email: </span><input type="email" name="email"><br/><br/>
+              <span>Contraseña: </span><input type="password" name="pass"><br/><br/>
+              <span>Rol</span><select name="rol">
+                                <option>Usuario</option>
+                                <option>Administrador</option>
+                              </select><br/><br/>
+              <input href="#about" class="btn btn-primary btn-xl page-scroll" name="Submit" value="Enviar" type="submit">
+        </form>
+
+      <?php else: ?>
+      
+
       <?php
-                $connection = new mysqli("localhost", "root", "", "proyecto"); // Me conecto a la base de datos
+           
+
+            //CREATING THE CONNECTION
+      	    $connection = new mysqli("localhost", "root", "", "proyecto");
+
+           //TESTING IF THE CONNECTION WAS RIGHT
+           if ($connection->connect_errno) {
+           	 printf("Connection failed: %s\n", $connection->connect_error);
+	           exit();
+	         }
 
 
-                if ($connection->connect_errno) { // compruebo que no hay errores
-                    printf("Connection failed: %s\n", $connection->connect_error);
-                    exit();
-                }
-                // Hago que el GET sea un ID
-                foreach ($_GET as $key => $codigoave)
+                
+            $consulta= "INSERT INTO usuarios VALUES(".$_POST['dni'].",'".$_POST['nombre']."','".$_POST["apellido"]."','".$_POST['pais']."','".$_POST['ciudad']."','".$_POST['email']."','".$_POST['pass']."','".$_POST['rol']."')";
+            
 
-                  // Verifico que esa reparación no existe ya  
+  	        $result = $connection->query($consulta);
 
-                  if ($result = $connection->query("select * from aves where codigo=$codigoave;")) {
+  	        if (!$result) { 
+   		         
+                echo "<br/><br/><br/><br/><br/><br/>";
+                echo "<h2 id='homeHeading'>Error en la inserción de los datos</h2>";
+                echo "<br/><br/><br/>";
+                
+                
+            } else {
+             
+            echo "<br/><br/><br/><br/><br/><br/>";
+            echo "<h3 id='homeHeading'>¡Genial! Tus datos han sido añadidos correctamente</h3>";
+            echo "<br/><br/>";
+            echo "<a href='../'><h4 id='homeHeading'>Volver al panel de control</h4></a>";
+            echo "<br/><br/>";
+                
+            }
 
-                    // Borro las facturas con ese id de reparación
+     ?>
 
-                    if ($result2 = $connection->query("delete from aves where codigo=$codigoave;")) {
-
-                      // Borro la reparación
-
-                      if ($result2 = $connection->query("delete from aves where codigo=$codigoave;")) {
-
-                          echo "El ave con código $codigoave ha sido eliminada de la base de datos.<br>";
-                          echo "<br/><br/><br/>";
-                          echo "<br/><a href='../'><h3 id='homeHeading'>Volver al panel</h3>";
-
-
-                        } else {
-                            mysqli_error($connection);
-                      }
-                    } else {
-                      }
-                          mysqli_error($connection);
-                    }
-                        mysqli_error($connection);
-
-                 ?>
-     <br>
-   </table> 
+      <?php endif ?>
             
             </div>
         </div>   
@@ -168,7 +203,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
                     
                     
         </div>
-        <div class="col-lg-1 text-center"></div>
+        <div class="col-lg-3 text-center"></div>
             </div>
         </div>
     </div>
