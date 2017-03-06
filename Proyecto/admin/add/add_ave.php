@@ -3,7 +3,7 @@
 
 
     
-    if ($_SESSION["rol"]!='Administrador'){
+    if ($_SESSION["rol"]!='usuario'){
         session_destroy();
       header("Location:../");
    }
