@@ -162,7 +162,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
 
 
                 
-            $consulta= "INSERT INTO pais VALUES('','".$_POST['nombre']."')";
+            $consulta= "INSERT INTO pais VALUES('".$_POST['nombre']."')";
             
 
   	        $result = $connection->query($consulta);

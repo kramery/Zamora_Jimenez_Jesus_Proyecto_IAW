@@ -226,26 +226,16 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
 
                   $consulta="INSERT INTO aves VALUES('','$nombre','$color','$especie','$target_file','$descripcion')";
                     
-                //  $consulta="INSERT INTO se_encuentra VALUES('','$nombre','$pais')";
+                  $consulta1="INSERT INTO se_encuentra VALUES('','$nombre','',$pais')";
 
   	        $result = $connection->query($consulta);
+            $result = $connection->query($consulta1);
 
   	        if (!$result) {
                 
    		         echo "Error en la inserción de datos";
                 
             } else {
-                
-                $rol = $_SESSION["rol"];
-                
-                
-                if ($rol==="Administrador") {
-
-                    echo "<h2>Tus datos han añadido correctamente en el sistema</h2>";
-    
-
-
-                 } else {
 
                       echo "<h2>Tus datos han añadido correctamente en el sistema</h2>";
                       echo "<a href='../../perfil/'><h4 id='homeHeading'>Volver a inicio</h4></a>";
@@ -255,9 +245,6 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
                 
             }
                 
-            }
-
-
                 
             ?>
 

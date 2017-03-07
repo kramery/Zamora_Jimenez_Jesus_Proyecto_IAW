@@ -120,12 +120,17 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
     <div class="row">
         <div class="col-lg-2 text-center"></div>
         <div class="col-lg-8 text-center">
+            
+            
+            
     <?php         
              if (empty($_GET))
-        die("Tienes que pasar algun parametro por GET.");
+        die("No hay ningún valor en GET");
 
 
         $nombre = $_GET['id'];
+            
+            var_dump($nombre);
 
         $connection= new mysqli("localhost", "root", "", "proyecto");
 
@@ -133,16 +138,30 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
            printf("Connection failed: %s\n", $connection->connect_error);
            exit();
            }
+            
+            $consulta="DELETE FROM se_encuentra where pais_nombre='$nombre'";
+            $consulta1="DELETE FROM pais where nombre='$nombre'";
 
-            if ($result = $connection->query("DELETE FROM pais where nombre=$nombre")) {
+            if ($result = $connection->query($consulta)) {
 
-              echo "El pais ha sido borrada con éxito.<br>";
-              header("Location: ../ ");
+              echo "El pais ha sido borrado con éxito.<br>";
+              echo "<a href='../' class='page-scroll btn btn-default btn-xl sr-button'>Volver al panel</a>";
+                
+                if ($result = $connection->query($consulta1)) {
+                    
+                    echo "El pais ha sido borrado con éxito.<br>";
+              echo "<a href='../' class='page-scroll btn btn-default btn-xl sr-button'>Volver al panel</a>";
+                    
+                } else {
+
+                mysqli_error($connection);
+                }
 
             } else {
 
                 mysqli_error($connection);
-          }
+            } 
+                
     ?>
             
             </div>

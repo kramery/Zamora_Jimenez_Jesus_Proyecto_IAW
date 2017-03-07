@@ -171,7 +171,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
 
 
                 
-            $consulta= "INSERT INTO usuarios VALUES(".$_POST['dni'].",'".$_POST['nombre']."','".$_POST["apellido"]."','".$_POST['pais']."','".$_POST['ciudad']."','".$_POST['email']."','".$_POST['pass']."','".$_POST['rol']."')";
+            $consulta= "INSERT INTO usuarios VALUES(".$_POST['dni'].",'".$_POST['nombre']."','".$_POST["apellido"]."','".$_POST['pais']."','".$_POST['ciudad']."','".$_POST['email']."',md5('".$_POST['pass']."'),'".$_POST['rol']."')";
             
 
   	        $result = $connection->query($consulta);

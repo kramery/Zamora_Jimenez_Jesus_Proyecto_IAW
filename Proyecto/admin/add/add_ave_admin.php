@@ -1,7 +1,5 @@
 <?php
   session_start();
-
-
     
     if ($_SESSION["rol"]!='Administrador'){
         session_destroy();
@@ -14,7 +12,6 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
 
 
 ?>
-
 
 
 
@@ -122,7 +119,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
         <div class="col-lg-8 text-center">
             
        <?php if (!isset($_POST['nombre']))  :?>
-              <form action="add_ave.php" method="post" enctype="multipart/form-data">
+              <form action="add_ave_admin.php" method="post" enctype="multipart/form-data">
                 <br/>
                   <span>Nombre: </span><input type="text" name="nombre"><br/><br/>
                   <span>Color: </span><input type="text" name="color"><br/><br/>
@@ -224,30 +221,44 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
                     $descripcion = $_POST['descripcion'];
                     $pais = $_POST['pais'];
 
-                  $consulta="INSERT INTO aves VALUES('','$nombre','$color','$especie','$target_file','$descripcion')";
+                  $consulta="INSERT INTO aves VALUES(null,'$nombre','$color','$especie','$target_file','$descripcion')";
                     
-                //  $consulta="INSERT INTO se_encuentra VALUES('','$nombre','$pais')";
+                 
 
   	        $result = $connection->query($consulta);
+                    
+            $codigo_nuevo = $connection->insert_id;
+                    
+             $consulta1="INSERT INTO se_encuentra VALUES('$codigo_nuevo','$nombre','$pais')";
+            
+            $result1 = $connection->query($consulta1);
 
   	        if (!$result) {
                 
-   		         echo "Error en la inserción de datos";
+   		         echo "Error en la inserción de del ave y del país";
                 
             } else {
                 
 
-                      echo "<h2>Tus datos han añadido correctamente en el sistema</h2>";
-                      echo "<a href='../'><h4 id='homeHeading'>Volver al panel</h4></a>";
+                      echo "<h2>Ave añadida correctamente en el sistema</h2>";
+                      echo "<a href='../../admin/'><h4 id='homeHeading'>Volver a inicio</h4></a>";
+                      echo var_dump($codigo_nuevo);  
+                
+                        if (!$result1) {
+                            
+                            echo "Error en la inserción del pais del ave en la tabla se_encuentra";
+                            
+                            var_dump($consulta1);
+                
+                        } else {
+                            
+                            echo "<h2>Tus datos han añadido correctamente en el sistema</h2>";
+                            echo "<a href='../../admin/'><h4 id='homeHeading'>Volver a inicio</h4></a>";
 
-                }
-                
-                
+                        }
             }
+        }
                 
-            
-
-
                 
             ?>
 

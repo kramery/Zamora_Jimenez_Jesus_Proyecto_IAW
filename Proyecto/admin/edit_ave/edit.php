@@ -140,18 +140,13 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
 
                 echo "<form action='edit.php' method='post'>";
 
-                  echo "<input type='hidden' value='$obj->codigo' name='codigo' type='text'>";
-                  echo "<p>Nombre: <input value='$obj->nombre' name='nombre' type='text'></p>";
+                  echo "<input type='hidden' value='$obj->codigo' name='codigo' type='text' required>";
+                  echo "<p>Nombre: <input value='$obj->nombre' name='nombre' type='text' required></p>";
                   echo "<p>Color: <input value='$obj->color' name='color' type='text'></p>";
                   echo "<p>Especie: <input value='$obj->especie' name='especie' type='text'></p>";
-                  
-                  
-                  
-                <?php 
 
-            if (!isset($_POST["imagen"])) : ?>
 
-            <?php 
+        
 
             $connection = new mysqli("localhost", "root", "", "proyecto");
             if ($connection->connect_errno) {
@@ -159,7 +154,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
                 exit();
             }
 
-            $query="SELECT * FROM aves WHERE codigo=$codigo";
+            $query="SELECT * FROM aves WHERE codigo=$codigo1";
             if ($result = $connection->query($query)) {
                 $obj = $result->fetch_object();
                 $codigo=$obj->codigo;
@@ -168,10 +163,9 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
 
             }
 
-            ?>
+
             
-                  echo "<p>Imagen: <input value='$obj->imagen' name='imagen' type='file'></p>";
-                  echo "<p>Descripcion: <textarea value= name='descripcion'>".$obj->descripcion."</textarea></p>";
+                  echo "<p>Descripcion: <textarea value='$obj->descripcion'' name='descripcion'>".$obj->descripcion."</textarea></p>";
                 
 
                   echo "<p><input type='submit' value='Editar' class='btn btn-primary' name='editar_usuario'></p>";
@@ -188,7 +182,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
             
             
             
-            if ($insert = $connection->query("update aves set codigo='".$_POST["codigo"]."', nombre='".$_POST["nombre"]."',  color='".$_POST["color"]."', especie='".$_POST["especie"]."', imagen='".$_POST["imagen"]."', descripcion='".$_POST["descripcion"]."' where codigo=".$_POST['codigo'].";")) {
+            if ($insert = $connection->query("update aves set codigo='".$_POST["codigo"]."', nombre='".$_POST["nombre"]."',  color='".$_POST["color"]."', especie='".$_POST["especie"]."', descripcion='".$_POST["descripcion"]."' where codigo=".$_POST['codigo'].";")) {
 
                           
                           
