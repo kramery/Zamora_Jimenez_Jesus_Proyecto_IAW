@@ -121,44 +121,59 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
         <div class="col-lg-2 text-center"></div>
         <div class="col-lg-8 text-center">
             
-      <?php
-                $connection = new mysqli("localhost", "root", "", "proyecto"); // Me conecto a la base de datos
+      <?php         
+             if (empty($_GET))
+        die("No hay ningún valor en GET");
 
 
-                if ($connection->connect_errno) { // compruebo que no hay errores
-                    printf("Connection failed: %s\n", $connection->connect_error);
-                    exit();
+        $codigo = $_GET['id'];
+            var_dump($codigo);
+            
+
+        $connection= new mysqli("localhost", "root", "", "proyecto");
+
+         if ($connection->connect_errno) {
+           printf("Connection failed: %s\n", $connection->connect_error);
+           exit();
+           }
+            
+            $consulta="DELETE FROM aves where codigo='$codigo'";
+            
+            $consulta1="DELETE FROM se_encuentra where aves_codigo='$codigo'";
+            
+            $consulta2="DELETE FROM avistar where aves_codigo='$codigo'";
+            
+            if ($result = $connection->query($consulta)) {
+
+              echo "El pais ha sido borrado con éxito.<br>";
+              echo "<a href='../' class='page-scroll btn btn-default btn-xl sr-button'>Volver al panel</a>";
+            
+                var_dump($codigo);
+                
+                if ($result = $connection->query($consulta)) {
+                    
+                    echo "El pais ha sido borrado con éxito.<br>";
+              echo "<a href='../' class='page-scroll btn btn-default btn-xl sr-button'>Volver al panel</a>";
+                    var_dump($codigo);
+                    
+                    if ($result = $connection->query($consulta)) {
+                    
+                    echo "El pais ha sido borrado con éxito.<br>";
+              echo "<a href='../' class='page-scroll btn btn-default btn-xl sr-button'>Volver al panel</a>";
+                        var_dump($codigo);
+                    
+                } else {
+
+                mysqli_error($connection);
                 }
-                // Hago que el GET sea un ID
-                foreach ($_GET as $key => $codigoave)
 
-                  // Verifico que esa reparación no existe ya  
+            } else {
 
-                  if ($result = $connection->query("select * from aves where codigo=$codigoave;")) {
-
-                    // Borro las facturas con ese id de reparación
-
-                    if ($result2 = $connection->query("delete from aves where codigo=$codigoave;")) {
-
-                      // Borro la reparación
-
-                      if ($result2 = $connection->query("delete from aves where codigo=$codigoave;")) {
-
-                          echo "El ave con código $codigoave ha sido eliminada de la base de datos.<br>";
-                          echo "<br/><br/><br/>";
-                          echo "<br/><a href='../'><h3 id='homeHeading'>Volver al panel</h3>";
-
-
-                        } else {
-                            mysqli_error($connection);
-                      }
-                    } else {
-                      }
-                          mysqli_error($connection);
-                    }
-                        mysqli_error($connection);
-
-                 ?>
+                mysqli_error($connection);
+            } 
+            }
+                
+    ?>
      <br>
    </table> 
             

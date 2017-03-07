@@ -1,20 +1,3 @@
-No puedo borrar países. hecho
-
-el fichero add_ave_admin.php al darle a enviar destruye la sesión. hecho
-
-En el fichero add_ave.php no sé como hacer dos insert en el mismo archivo.
-
-
-
-
-
-
-
 El archivo cambiar_imagen.php sigue sin funcionar. He conseguido insertar
 las imagenes en la carpeta y que salga por pantalla, pero la query
 no me la da por buena aunque por workbench si funiona.
-
-
-
-en editar ave da error en la 150, he probado a rehacerlo pero sigo
-sin encontrar el > que aparce.
