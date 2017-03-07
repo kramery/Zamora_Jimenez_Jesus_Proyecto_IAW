@@ -92,7 +92,7 @@
               
             
             <br>
-              <span>DNI: </span><input type="number"  name="dni" required><br><br/>
+              <span>DNI: </span><input type="text"  name="dni" required><br><br/>
               <span>Nombre: </span><input type="text" name="nombre"><br/><br/>
               <span>Apellidos: </span><input type="text" name="apellido"><br/><br/>
               <span>Pais: </span><input type="text" name="pais"><br/><br/>
@@ -119,7 +119,7 @@
 
 
                 
-            $consulta= "INSERT INTO usuarios VALUES(".$_POST['dni'].",'".$_POST['nombre']."','".$_POST["apellido"]."','".$_POST['pais']."','".$_POST['ciudad']."','".$_POST['email']."',md5('".$_POST['pass']."'),'usuario')";
+            $consulta= "INSERT INTO usuarios VALUES('".$_POST['dni']."','".$_POST['nombre']."','".$_POST["apellido"]."','".$_POST['pais']."','".$_POST['ciudad']."','".$_POST['email']."',md5('".$_POST['pass']."'),'usuario')";
             
 
   	        $result = $connection->query($consulta);
@@ -128,6 +128,7 @@
    		         
                 echo "<br/><br/><br/><br/><br/><br/>";
                 echo "<h2 id='homeHeading'>Error en la inserción de los datos</h2>";
+                var_dump($result);
                 echo "<br/><br/><br/>";
                 
                 

@@ -30,6 +30,8 @@
                 $_SESSION["dni"]=$obj->dni;
                 $_SESSION["rol"] = $obj->rol;
                 $_SESSION["pass"] = $obj->pass;
+                
+                $_SESSION["nombre"] = $obj->nombre;
 
 
 

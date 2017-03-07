@@ -112,7 +112,7 @@ if ($_SESSION["rol"]===null){
       }
       // Guardo en la variable result una consulta a la base de datos para sacar 
       // todas las columnas de la tabla reparaciones
-      if ($result = $connection->query("SELECT * FROM aves where codigo=$codigo;")) {
+      if ($result = $connection->query("SELECT * FROM aves a join avistar av on a.codigo=av.aves_codigo where a.codigo=$codigo;")) {
       } else {
       // En caso de error saco la salida del error.
             echo "Error: " . $sql . "<br>" . mysqli_error($connection);
@@ -121,7 +121,7 @@ if ($_SESSION["rol"]===null){
       // almacenado en result
           while($obj = $result->fetch_object()) {
                 echo "<div class='row text-center'>";
-                echo "<div class='col-lg-8 text-center'>".$obj->nombre.". Es un ave que habita en</div>";
+                echo "<div class='col-lg-8 text-center'>".$obj->nombre.". Es un ave que habita en ".$obj->nombre."</div>";
                 echo "</div>";
               
                 echo "</br>";

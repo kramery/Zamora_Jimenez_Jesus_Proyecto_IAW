@@ -3,6 +3,7 @@
 
   $dni=$_SESSION["dni"];
   $pass=$_SESSION["pass"];
+  $nombre=$_SESSION["username"];
 
     if ($_SESSION["rol"]===null){
             session_destroy();
@@ -24,11 +25,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Avistar ave</title>
+    <title>Añadir Ave</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../estilos/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    
+    <!-- mi estilo CSS -->
+    <link href="../estilos/css/estilo.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="../estilos/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -47,32 +50,41 @@
         display: inline-block;
         text-align: left;
       }
-        
-   
     </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 </head>
 
 <body id="page-top">
 
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top affix">
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Start Bootstrap</a>
+                <a class="navbar-brand page-scroll" href="#page-top">Proyecto IAW</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    
                     <li>
-                        <a class="page-scroll" href="../sesion/logout.php">Cerrar sesión</a>
+                        <a class="page-scroll" href="../">Inicio</a>
                     </li>
-                    
+                    <li>
+                        <a class="page-scroll" href="../../sesion/logout.php">Cerrar sesión</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact"></a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -80,11 +92,32 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <header>
-        <div class="header-content">
-            <div class="header-content-inner">
-                <h2 id="homeHeading">Avistar ave</h2><br/>
-                <a href='../admin/add/add_ave.php' class='page-scroll btn btn-default btn-xl sr-button'>¿Quieres añadir un nuevo ave?</a>
+    
+    <?php
+    
+    echo "<aside class='capa'>";
+        echo "<br/><br/>";  
+        echo "<div class='container text-center'>";
+            echo "<div class='call-to-action'>";
+                echo "<h2 id='blanco'>Añadir Ave</h2>";
+           echo " </div>";
+        echo "</div>";
+    echo "</aside>";
+        
+        ?>
+    
+    
+    
+    <section class="bg-primary-amarillo" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                     
+    <div class="row">
+        <div class="col-lg-2 text-center"></div>
+        <div class="col-lg-8 text-center">      
+      
+      <a href='../admin/add/add_ave.php' class='page-scroll btn btn-default btn-xl sr-button'>¿Quieres añadir un nuevo ave?</a>
                 <hr>
                     
                   <?php
@@ -181,38 +214,55 @@
 	           exit();
 	         }
 
-
+            $sitio = $_POST["sitio"];
+            $fecha = $_POST['fecha'];
+            $codigo = $_POST["codigo"];
                 
-            $consulta= "INSERT INTO avistar VALUES('".$_POST["sitio"]."','".$_POST['fecha']."',$dni,'".$_POST["codigo"]."','')";
+            $consulta= "INSERT INTO avistar VALUES('$sitio','$fecha','$dni','$codigo','$nombre')";
 
   	        $result = $connection->query($consulta);
 
   	        if (!$result) { 
    		         
-                echo "<br/><br/><br/><br/><br/><br/>";
                 echo "<h2 id='homeHeading'>Error en la inserción de los datos</h2>";
-                echo "<br/><br/><br/>";
+                var_dump($result);
                 
                 
             } else {
              
-            echo "<br/><br/><br/><br/><br/><br/>";
-            echo "<h3 id='homeHeading'>¡Genial! Tus datos han sido añadidos correctamente</h3>";
-            echo "<br/><br/>";
-            echo "<a href='index.php'><h4 id='homeHeading'>Volver</h4></a>";
-            echo "<br/><br/>";
+            echo "<h3 id='homeHeading'>¡Genial! El avistamiento ha sido añadido correctamente</h3>";
                 
             }
 
      ?>
 
       <?php endif ?>
-            
+      
+      </div>   
+                    
+                    
+                    
+        </div>
+        <div class="col-lg-1 text-center"></div>
             </div>
         </div>
-    </header>   
+    </div>
+    </section>
+    
+    
+    
 
-   
+    
+    <section class="bg-primary-naranja" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <a href="../" class="page-scroll btn btn-default btn-xl sr-button">Volver al panel</a>                    
+                </div>
+            </div>
+        </div>
+    </section>
+  
 
     <!-- jQuery -->
     <script src="../estilos/vendor/jquery/jquery.min.js"></script>

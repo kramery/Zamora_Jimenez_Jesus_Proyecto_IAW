@@ -139,39 +139,17 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
             
             $consulta="DELETE FROM aves where codigo='$codigo'";
             
-            $consulta1="DELETE FROM se_encuentra where aves_codigo='$codigo'";
-            
-            $consulta2="DELETE FROM avistar where aves_codigo='$codigo'";
             
             if ($result = $connection->query($consulta)) {
 
               echo "El pais ha sido borrado con éxito.<br>";
               echo "<a href='../' class='page-scroll btn btn-default btn-xl sr-button'>Volver al panel</a>";
-            
-                var_dump($codigo);
                 
-                if ($result = $connection->query($consulta)) {
-                    
-                    echo "El pais ha sido borrado con éxito.<br>";
-              echo "<a href='../' class='page-scroll btn btn-default btn-xl sr-button'>Volver al panel</a>";
-                    var_dump($codigo);
-                    
-                    if ($result = $connection->query($consulta)) {
-                    
-                    echo "El pais ha sido borrado con éxito.<br>";
-              echo "<a href='../' class='page-scroll btn btn-default btn-xl sr-button'>Volver al panel</a>";
-                        var_dump($codigo);
-                    
-                } else {
-
-                mysqli_error($connection);
-                }
-
             } else {
 
                 mysqli_error($connection);
             } 
-            }
+            
                 
     ?>
      <br>

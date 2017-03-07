@@ -121,28 +121,35 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
         <div class="col-lg-2 text-center"></div>
         <div class="col-lg-8 text-center">
             
-     <?php
-                $connection = new mysqli("localhost", "root", "", "proyecto"); // Me conecto a la base de datos
+     <?php         
+             if (empty($_GET))
+        die("No hay ningún valor en GET");
 
 
-                if ($connection->connect_errno) { // compruebo que no hay errores
-                    printf("Connection failed: %s\n", $connection->connect_error);
-                    exit();
-                }
-                // Hago que el GET sea un ID
-                foreach ($_GET as $key => $dniuser)
+        $codigo = $_GET['id'];
+            
 
-                      if ($result2 = $connection->query("delete from usuarios where dni=$dniuser;")) {
+        $connection= new mysqli("localhost", "root", "", "proyecto");
 
-                          echo "El usuario con DNI $dniuser ha sido eliminado de la base de datos.<br>";
-                          echo "<br/><br/><br/>";
-                          echo "<br/><a href='../'><h3 id='homeHeading'>Volver al panel</h3>";
+         if ($connection->connect_errno) {
+           printf("Connection failed: %s\n", $connection->connect_error);
+           exit();
+           }
+            
+            $consulta="DELETE FROM usuarios where dni=$codigo";
+            
+            
+            if ($result = $connection->query($consulta)) {
 
+              echo "<h3 id='homeHeading'>El usuario con código $codigo ha sido borrado con éxito.</h3>";
+                
+            } else {
 
-                        } else {
-                            mysqli_error($connection);
-                      }                 
-                ?>
+                mysqli_error($connection);
+            } 
+            
+                
+    ?>
             
             </div>
         </div>   

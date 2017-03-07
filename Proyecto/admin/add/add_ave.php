@@ -1,7 +1,5 @@
 <?php
   session_start();
-
-
     
     if ($_SESSION["rol"]!='usuario'){
         session_destroy();
@@ -14,7 +12,6 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
 
 
 ?>
-
 
 
 
@@ -224,26 +221,38 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
                     $descripcion = $_POST['descripcion'];
                     $pais = $_POST['pais'];
 
-                  $consulta="INSERT INTO aves VALUES('','$nombre','$color','$especie','$target_file','$descripcion')";
+                  $consulta="INSERT INTO aves VALUES(null,'$nombre','$color','$especie','$target_file','$descripcion')";
                     
-                  $consulta1="INSERT INTO se_encuentra VALUES('','$nombre','',$pais')";
+                 
 
   	        $result = $connection->query($consulta);
-            $result = $connection->query($consulta1);
+                    
+            $codigo_nuevo = $connection->insert_id;
+                    
+             $consulta1="INSERT INTO se_encuentra VALUES('$codigo_nuevo','$nombre','$pais')";
+            
+            $result1 = $connection->query($consulta1);
 
   	        if (!$result) {
                 
-   		         echo "Error en la inserción de datos";
+   		         echo "Error en la inserción de del ave y del país";
                 
             } else {
-
-                      echo "<h2>Tus datos han añadido correctamente en el sistema</h2>";
-                      echo "<a href='../../perfil/'><h4 id='homeHeading'>Volver a inicio</h4></a>";
-
-                }
                 
+
+                      echo "<h2>Ave añadida correctamente en el sistema</h2>";
                 
+                        if (!$result1) {
+                            
+                            echo "Error en la inserción del pais del ave en la tabla se_encuentra";
+                
+                        } else {
+                            
+                    
+
+                        }
             }
+        }
                 
                 
             ?>
@@ -270,7 +279,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="../" class="page-scroll btn btn-default btn-xl sr-button">Volver al panel</a>                    
+                    <a href="../../perfil/index.php" class="page-scroll btn btn-default btn-xl sr-button">Volver al panel</a>                    
                 </div>
             </div>
         </div>

@@ -129,7 +129,7 @@
    	         }     
                 
                 
-            if ($pass_actual = $connection->query("select * from usuarios where dni=$dni;")) {
+            if ($pass_actual = $connection->query("select * from usuarios where dni='$dni';")) {
             
                 
                 } else {
@@ -161,7 +161,7 @@
                  
             
                  
-                $consulta1 = "UPDATE usuarios set pass=md5('$_POST[pass_nueva]') where dni=$dni";
+                $consulta1 = "UPDATE usuarios set pass=md5('$_POST[pass_nueva]') where dni='$dni'";
 
                 $result = $connection->query($consulta1);
 
