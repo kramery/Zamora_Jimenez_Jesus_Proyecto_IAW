@@ -25,7 +25,7 @@ if ($_SESSION["rol"]===null){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Inicio</title>
+    <title>descripción</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../estilos/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -112,7 +112,7 @@ if ($_SESSION["rol"]===null){
       }
       // Guardo en la variable result una consulta a la base de datos para sacar 
       // todas las columnas de la tabla reparaciones
-      if ($result = $connection->query("SELECT * FROM aves a join avistar av on a.codigo=av.aves_codigo where a.codigo=$codigo;")) {
+      if ($result = $connection->query("SELECT * FROM avistar av join aves a on av.aves_codigo=a.codigo join se_encuentra s on a.codigo=s.aves_codigo where a.codigo=$codigo;")) {
       } else {
       // En caso de error saco la salida del error.
             echo "Error: " . $sql . "<br>" . mysqli_error($connection);
@@ -121,13 +121,13 @@ if ($_SESSION["rol"]===null){
       // almacenado en result
           while($obj = $result->fetch_object()) {
                 echo "<div class='row text-center'>";
-                echo "<div class='col-lg-8 text-center'>".$obj->nombre.". Es un ave que habita en ".$obj->nombre."</div>";
+                echo "<div class='col-lg-12 text-center'>Ave seleccionada <b>".$obj->nombre."</b>. Es un ave que habita en ".$obj->pais_nombre.".</div>";
                 echo "</div>";
               
                 echo "</br>";
               
                 echo "<div class='row'>";
-                    echo "<div class='col-lg-9 '><img src='../admin/add/$obj->imagen'/> <p id='parrafo'>".$obj->descripcion."</p></div>";  
+                    echo "<div class='col-lg-12 '><img src='../admin/add/$obj->imagen'/> <p id='parrafo'>".$obj->descripcion."</p></div>";  
                 echo "</div>";
               
               
@@ -146,7 +146,7 @@ if ($_SESSION["rol"]===null){
           // Bajo el encabezado de la tabla muestro las columnas de la consulta a la base de datos
           // almacenado en result
               while($obj = $result->fetch_object()) {    
-                    echo "Este ave ha sido avistado <a href='usuario/pagina.php?id=$codigo'>".$obj->numero."</a> veces por varios usuarios";
+                    echo "<br/>Este ave ha sido avistado <a href='usuario/pagina.php?id=$codigo'>".$obj->numero."</a> veces por varios usuarios";
 
               }
           }

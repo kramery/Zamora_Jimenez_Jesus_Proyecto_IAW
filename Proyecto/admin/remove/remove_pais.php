@@ -121,7 +121,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
         <div class="col-lg-2 text-center"></div>
         <div class="col-lg-8 text-center">
             
-       <table border="1px solid black">
+       <table border="1px solid black" class="table-hover table-responsive">
      <thead>  <!-- Aquí creo en encabezado de la tabla, con el nombre de las columnas de la tabla
                     reparaciones --> 
        <tr>

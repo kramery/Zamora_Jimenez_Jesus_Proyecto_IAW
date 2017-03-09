@@ -86,9 +86,6 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
                     <li>
                         <a class="page-scroll" href="../../sesion/logout.php">Cerrar sesión</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#contact"></a>
-                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -142,8 +139,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
             
             if ($result = $connection->query($consulta)) {
 
-              echo "El pais ha sido borrado con éxito.<br>";
-              echo "<a href='../' class='page-scroll btn btn-default btn-xl sr-button'>Volver al panel</a>";
+              echo "<h3 id='homeHeading'>El ave ha sido borrado con éxito.</h3>";
                 
             } else {
 

@@ -115,22 +115,18 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
     <section class="bg-primary-amarillo" id="about">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
+                <div class="col-lg-9 col-lg-offset-2 text-center">
                      
     <div class="row">
         <div class="col-lg-2 text-center"></div>
         <div class="col-lg-8 text-center">
             
-       <table border="1px solid black">
+       <table border="1px solid black" class="table-hover table-responsive">
      <thead>  <!-- Aquí creo en encabezado de la tabla, con el nombre de las columnas de la tabla
                     reparaciones --> 
        <tr>
          <th>Codigo</th>
-         <th>Nombre</th>
-         <th>Color</th>
-         <th>Especie</th>
-         <th>Imagen</th>         
-         <th>descripción</th> 
+         <th>Nombre</th> 
          <th>Borrar ave</th>         
     </thead>
     <?php
@@ -154,10 +150,6 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
               echo "<tr>";
               echo "<td>".$obj->codigo."</td>";
               echo "<td>".$obj->nombre."</td>";
-              echo "<td>".$obj->color."</td>";
-              echo "<td>".$obj->especie."</td>";
-              echo "<td>".$obj->imagen."</td>";
-              echo "<td>".$obj->descripcion."</td>";
               echo "<td><form id='form0' method='get'>
                           <a href='rem_ave.php?id=$obj->codigo'>
                             <img src='../add/img/borrar.png' width='30%';/>
@@ -179,8 +171,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
                     
                     
                     
-        </div>
-        <div class="col-lg-1 text-center"></div>
+                </div>
             </div>
         </div>
     </div>

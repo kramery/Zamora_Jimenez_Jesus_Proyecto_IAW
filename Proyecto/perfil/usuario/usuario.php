@@ -108,7 +108,7 @@
         while($obj = $result->fetch_object()) {
               echo "<div class='row text-center'>";
                   echo "<div class='col-md-2'></div>";
-                  echo "<div class='col-md-4'><img src='../admin/add/$obj->imagen'></a></div>";
+                  echo "<div class='col-md-4'><img src='../../admin/add/$obj->imagen'></a></div>";
                   echo "<div class='col-md-4'>$obj->nombre</div>";
                   echo "<div class='col-md-2'></div>";
               echo "</div>";
@@ -124,6 +124,14 @@
           unset($connection); // Cierro la conexión
           ?>
     
+    <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    
+                    <br/><br/><br/>
+                    <a href="../index.php" class="page-scroll btn btn-default btn-xl sr-button">Volver a inicio</a> 
+                    <br/><br/><br/>
+                </div>
+            </div>
 
 
     <!-- jQuery -->

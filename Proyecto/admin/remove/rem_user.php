@@ -121,8 +121,9 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
         <div class="col-lg-2 text-center"></div>
         <div class="col-lg-8 text-center">
             
-     <?php         
-             if (empty($_GET))
+     <?php    
+            
+        if (empty($_GET))
         die("No hay ningún valor en GET");
 
 
@@ -136,7 +137,10 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
            exit();
            }
             
-            $consulta="DELETE FROM usuarios where dni=$codigo";
+            $consulta="DELETE FROM usuarios where nombre='$codigo'";
+
+            
+            // $consulta1="DELETE FROM usuarios where nombre=$codigo";
             
             
             if ($result = $connection->query($consulta)) {
@@ -146,7 +150,11 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
             } else {
 
                 mysqli_error($connection);
-            } 
+                
+        
+            }
+            
+            
             
                 
     ?>

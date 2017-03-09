@@ -115,20 +115,16 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
     <section class="bg-primary-amarillo" id="about">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
+                <div class="col-lg-12 col-lg-offset-2 text-center">
                      
     <div class="row">
         <div class="col-lg-2 text-center"></div>
         <div class="col-lg-8 text-center">
             
-       <table border="1">
+       <table border="1" class="table-hover table-responsive">
                     <tr>
                      <th>DNI</th>
                      <th>Nombre</th>
-                     <th>Apellidos</th>
-                     <th>Pais</th>
-                     <th>Ciudad</th>         
-                     <th>Email</th>
                      <th>Borrar</th>
                     </tr>
 
@@ -152,13 +148,9 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
           while($obj = $result->fetch_object()) {
               echo "<tr>";
               echo "<td>".$obj->dni."</td>";
-              echo "<td>".$obj->nombre."</td>";
-              echo "<td>".$obj->apellidos."</td>";
-              echo "<td>".$obj->pais."</td>";
-              echo "<td>".$obj->ciudad."</td>";
-              echo "<td>".$obj->email."</td>";              
+              echo "<td>".$obj->nombre."</td>";          
               echo "<td><form id='form0' method='get'>
-                          <a href='rem_user.php?id=$obj->dni'>
+                          <a href='rem_user.php?id=$obj->nombre'>
                             <img src='../../estilos/img/borrar.png' width='30%';/>
                           </a>
                         </form></td>";

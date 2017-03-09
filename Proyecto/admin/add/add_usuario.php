@@ -140,7 +140,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
             ?>
             
             <br>
-              <span>DNI: </span><input type="number"  name="dni" required><br><br/>
+              <span>DNI: </span><input type="text"  name="dni" required><br><br/>
               <span>Nombre: </span><input type="text" name="nombre"><br/><br/>
               <span>Apellidos: </span><input type="text" name="apellido"><br/><br/>
               <span>Pais: </span><input type="text" name="pais"><br/><br/>
@@ -148,7 +148,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
               <span>Email: </span><input type="email" name="email"><br/><br/>
               <span>Contraseña: </span><input type="password" name="pass"><br/><br/>
               <span>Rol</span><select name="rol">
-                                <option>Usuario</option>
+                                <option>usuario</option>
                                 <option>Administrador</option>
                               </select><br/><br/>
               <input href="#about" class="btn btn-primary btn-xl page-scroll" name="Submit" value="Enviar" type="submit">
@@ -171,7 +171,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
 
 
                 
-            $consulta= "INSERT INTO usuarios VALUES(".$_POST['dni'].",'".$_POST['nombre']."','".$_POST["apellido"]."','".$_POST['pais']."','".$_POST['ciudad']."','".$_POST['email']."',md5('".$_POST['pass']."'),'".$_POST['rol']."')";
+            $consulta= "INSERT INTO usuarios VALUES('".$_POST['dni']."','".$_POST['nombre']."','".$_POST["apellido"]."','".$_POST['pais']."','".$_POST['ciudad']."','".$_POST['email']."',md5('".$_POST['pass']."'),'".$_POST['rol']."')";
             
 
   	        $result = $connection->query($consulta);

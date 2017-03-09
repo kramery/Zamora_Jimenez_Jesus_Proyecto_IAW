@@ -130,7 +130,6 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
 
         $nombre = $_GET['id'];
             
-            var_dump($nombre);
 
         $connection= new mysqli("localhost", "root", "", "proyecto");
 
@@ -144,13 +143,11 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
 
             if ($result = $connection->query($consulta)) {
 
-              echo "El pais ha sido borrado con éxito.<br>";
-              echo "<a href='../' class='page-scroll btn btn-default btn-xl sr-button'>Volver al panel</a>";
                 
                 if ($result = $connection->query($consulta1)) {
                     
-                    echo "El pais ha sido borrado con éxito.<br>";
-              echo "<a href='../' class='page-scroll btn btn-default btn-xl sr-button'>Volver al panel</a>";
+                    echo "<h3 id='homeHeading'>El país ha sido borrado con éxito.</h3>";
+             
                     
                 } else {
 

@@ -1,14 +1,19 @@
 <?php
   session_start();
 
-$username=$_SESSION["username"];
 
     
     if ($_SESSION["rol"]!='Administrador'){
         session_destroy();
       header("Location:../");
    }
-    ?>
+
+$connection = new mysqli("localhost", "root", "", "proyecto");
+
+
+
+
+?>
 
 
 
@@ -24,7 +29,7 @@ $username=$_SESSION["username"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Inicio</title>
+    <title>Seleccionar imagen para actualizar</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../../estilos/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -42,13 +47,14 @@ $username=$_SESSION["username"];
 
     <!-- Theme CSS -->
     <link href="../../estilos/css/creative.min.css" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    
+    <style>
+      span {
+        width: 100px;
+        display: inline-block;
+        text-align: left;
+      }
+    </style>
 
 </head>
 
@@ -71,7 +77,7 @@ $username=$_SESSION["username"];
                         <a class="page-scroll" href="../">Inicio</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="../sesion/logout.php">Cerrar sesión</a>
+                        <a class="page-scroll" href="../../sesion/logout.php">Cerrar sesión</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact"></a>
@@ -90,7 +96,7 @@ $username=$_SESSION["username"];
         echo "<br/><br/>";  
         echo "<div class='container text-center'>";
             echo "<div class='call-to-action'>";
-                echo "<h2 id='blanco'>Editar usuario</h2>";
+                echo "<h2 id='blanco'>Seleccionar imagen para actualizar</h2>";
            echo " </div>";
         echo "</div>";
     echo "</aside>";
@@ -102,19 +108,18 @@ $username=$_SESSION["username"];
     <section class="bg-primary-amarillo" id="about">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
+                <div class="col-lg-12 col-lg-offset-2 text-center">
                      
     <div class="row">
-        <div class="col-lg-4 text-center"></div>
-        <div class="col-lg-4 text-center">
+        <div class="col-lg-2 text-center"></div>
+        <div class="col-lg-8 text-center">
             
-    <table border="1px solid black" align="center">
-     <thead align="center">  <!-- Aquí creo en encabezado de la tabla, con el nombre de las columnas de la tabla
-                    reparaciones --> 
-       <tr>
-         <th>Nombre</th>
-         <th>Editar</th>
-      </thead>
+       <table border="1" class="table-hover table-responsive">
+                    <tr>
+                     <th>Imagen</th>
+                     <th>Borrar</th>
+                    </tr>
+
     <?php
       
       $connection = new mysqli("localhost", "root", "", "proyecto"); //Realizo la conexión a la base de datos.
@@ -125,7 +130,7 @@ $username=$_SESSION["username"];
       }
       // Guardo en la variable result una consulta a la base de datos para sacar 
       // todas las columnas de la tabla reparaciones
-      if ($result = $connection->query("SELECT * FROM usuarios;")) {
+      if ($result = $connection->query("SELECT * FROM aves;")) {
       } else {
       // En caso de error saco la salida del error.
             echo "Error: " . $sql . "<br>" . mysqli_error($connection);
@@ -134,16 +139,12 @@ $username=$_SESSION["username"];
       // almacenado en result
           while($obj = $result->fetch_object()) {
               echo "<tr>";
-              echo "<td>".$obj->nombre."</td>";
-              
-              // Creo otra celda que será un enlace, que tomará como ruta el archivo 
-              // asignar_empleados.php?id=, pasándo como parámetro mediante get el id de la reparación.
-              
-              echo "<td><form id='form4' width = '50px' method='get'>
-                    <a href='edit.php?id=$obj->dni'>
-                      <img src='../add/img/editar.png' width='30%';/>
-                    </a></form></td>";
-
+              echo "<td><img src='../add/$obj->imagen'></td>";         
+              echo "<td><form id='form0' method='get'>
+                          <a href='cambiar_imagen.php?id=$obj->codigo'>
+                            <img src='../add/img/editar.png' width='30%';/>
+                          </a>
+                        </form></td>";
               echo "</tr>";
           }
           
@@ -152,14 +153,17 @@ $username=$_SESSION["username"];
 
           unset($connection); // Cierro la conexión
           ?>
-     <br>
-   </table>
+                  
+                
+                </table> 
+            
+            </div>
+        </div>   
                     
                     
                     
-                    
-                </div>
-        <div class="col-lg-4 text-center"></div>
+        </div>
+        <div class="col-lg-1 text-center"></div>
             </div>
         </div>
     </div>

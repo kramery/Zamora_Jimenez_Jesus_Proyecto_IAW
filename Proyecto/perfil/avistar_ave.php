@@ -257,7 +257,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="../" class="page-scroll btn btn-default btn-xl sr-button">Volver al panel</a>                    
+                    <a href="index.php" class="page-scroll btn btn-default btn-xl sr-button">Volver al panel</a>                    
                 </div>
             </div>
         </div>
