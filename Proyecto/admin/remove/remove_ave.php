@@ -118,8 +118,8 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
                 <div class="col-lg-9 col-lg-offset-2 text-center">
                      
     <div class="row">
-        <div class="col-lg-2 text-center"></div>
-        <div class="col-lg-8 text-center">
+        <div class="col-lg-4 text-center"></div>
+        <div class="col-lg-7 text-center">
             
        <table border="1px solid black" class="table-hover table-responsive">
      <thead>  <!-- Aquí creo en encabezado de la tabla, con el nombre de las columnas de la tabla

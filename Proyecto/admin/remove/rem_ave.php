@@ -124,7 +124,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
 
 
         $codigo = $_GET['id'];
-            var_dump($codigo);
+    
             
 
         $connection= new mysqli("localhost", "root", "", "proyecto");

@@ -240,9 +240,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
             } else {
                 
 
-                      echo "<h2>Ave añadida correctamente en el sistema</h2>";
-                      echo "<a href='../../admin/'><h4 id='homeHeading'>Volver a inicio</h4></a>";
-                      echo var_dump($codigo_nuevo);  
+            
                 
                         if (!$result1) {
                             
@@ -252,8 +250,8 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
                 
                         } else {
                             
-                            echo "<h2>Tus datos han añadido correctamente en el sistema</h2>";
-                            echo "<a href='../../admin/'><h4 id='homeHeading'>Volver a inicio</h4></a>";
+                            echo "<h3 id='homeading'>Tus datos han añadido correctamente en el sistema</h2>";
+        
 
                         }
             }

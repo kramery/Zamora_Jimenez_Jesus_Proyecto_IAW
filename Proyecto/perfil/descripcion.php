@@ -127,7 +127,11 @@ if ($_SESSION["rol"]===null){
                 echo "</br>";
               
                 echo "<div class='row'>";
-                    echo "<div class='col-lg-12 '><img src='../admin/add/$obj->imagen'/> <p id='parrafo'>".$obj->descripcion."</p></div>";  
+                    echo "<div class='col-lg-12 '><img src='../admin/add/$obj->imagen'/></div>";  
+                echo "</div>";
+              
+              echo "<div class='row'>";
+                    echo "<div class='col-lg-12 '><br/>$obj->descripcion</div>";  
                 echo "</div>";
               
               

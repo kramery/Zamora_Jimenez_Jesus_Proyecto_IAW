@@ -80,7 +80,7 @@
                         <a class="page-scroll" href="../">Inicio</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="../../sesion/logout.php">Cerrar sesión</a>
+                        <a class="page-scroll" href="../sesion/logout.php">Cerrar sesión</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact"></a>
