@@ -29,7 +29,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Editar usuario</title>
+    <title>Añadir pais</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../../estilos/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

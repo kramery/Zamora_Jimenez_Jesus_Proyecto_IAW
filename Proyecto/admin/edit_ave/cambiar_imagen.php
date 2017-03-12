@@ -117,9 +117,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                      
-    <div class="row">
-        <div class="col-lg-3 text-center"></div>
-        <div class="col-lg-6 text-center">
+    
             
     <?php 
        
@@ -127,14 +125,16 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
         if (!isset($_FILES["bird"])) :
       ?>
 
-      
-        
+      <div class="row">
+          <div class="col-lg-12 text-center">
+          
       
         <form method="post" action="cambiar_imagen.php" enctype="multipart/form-data">
           <input type="hidden" value="<?php echo $_GET['id']; ?>" name="codigo" />
             <span>Imagen:</span><input type="file" name="bird" id="pajaro" required />            
             <br><span><input type="submit" value="Enviar" /></span><br/>
         </form>
+        
 
       <?php else: ?>
 
@@ -147,7 +147,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
         if ($_FILES['bird']['name']!="") {
             $tmp_file = $_FILES['bird']['tmp_name'];
             $codigo = $_POST['codigo'];
-            var_dump($codigo);
+
             $target_dir = "../add/img/";
             $target_file = strtolower($target_dir . basename($_FILES['bird']['name']));
 
@@ -243,13 +243,6 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="../../estilos/vendor/scrollreveal/scrollreveal.min.js">
-    
-    
-    $(function(){
-
-                $("img [src='https://cloud.githubusercontent.com/assets/23024110/20663010/9968df22-b55e-11e6-941d-edbc894c2b78.png']").hide();
-                             
-        });
     
     
     </script>

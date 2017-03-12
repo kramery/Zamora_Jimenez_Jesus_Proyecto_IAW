@@ -78,9 +78,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
                     <li>
                         <a class="page-scroll" href="../../sesion/logout.php">Cerrar sesión</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#contact"></a>
-                    </li>
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -147,9 +145,14 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
                   echo "<p>Nombre: <input value='$obj->nombre' name='nombre' type='text'></p>";
                   echo "<p>Apellidos: <input value='$obj->apellidos' name='apellidos' type='text'></p>";
                   echo "<p>Pais: <input value='$obj->pais' name='pais' type='text'></p>";
+                  echo "<input type='hidden' value='$obj->pass' name='pass' type='text'>";
                   echo "<p>Ciudad: <input value='$obj->ciudad' name='ciudad' type='text'></p>";
                   echo "<p>Email: <input value='$obj->email' name='email' type='text'></p>";
-                  echo "<p>ROL: <input value='$obj->rol' name='rol' type='text' ></p>";
+                 
+                  echo "<p>Rol</span></p><select name='rol'>
+                                <option>Usuario</option>
+                                <option>Administrador</option>
+                              </select><br/><br/>";
 
 
                   echo "<p><input type='submit' value='Editar' class='btn btn-primary' name='editar_usuario'></p>";
@@ -166,7 +169,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
             
             
             
-            if ($insert = $connection->query("update usuarios set dni='".$_POST["dni"]."', nombre='".$_POST["nombre"]."',  apellidos='".$_POST["apellidos"]."', pais='".$_POST["pais"]."', ciudad='".$_POST["ciudad"]."', email='".$_POST["email"]."', pass='', rol='".$_POST["rol"]."' where dni=".$_POST['dni'].";")) {
+            if ($insert = $connection->query("update usuarios set dni='".$_POST["dni"]."', nombre='".$_POST["nombre"]."',  apellidos='".$_POST["apellidos"]."', pais='".$_POST["pais"]."', ciudad='".$_POST["ciudad"]."', email='".$_POST["email"]."', pass='".$_POST["pass"]."', rol='".$_POST["rol"]."' where dni=".$_POST['dni'].";")) {
 
                           
                           

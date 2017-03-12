@@ -133,7 +133,8 @@ $username=$_SESSION["username"];
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                       <a href="edit_user/" class="page-scroll btn btn-default btn-xl sr-button">Editar usuario</a>
-                      <a href="edit_ave/" class="page-scroll btn btn-default btn-xl sr-button">Editar ave</a>                  
+                      <a href="edit_ave/" class="page-scroll btn btn-default btn-xl sr-button">Editar ave</a>       
+                      <a href="edit_ave/select_imagen_cambiar.php" class="page-scroll btn btn-default btn-xl sr-button">Editar imagen ave</a> 
                 </div>
             </div>
         </div>

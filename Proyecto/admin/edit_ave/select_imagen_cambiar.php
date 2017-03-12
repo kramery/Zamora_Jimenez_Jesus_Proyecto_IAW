@@ -79,9 +79,6 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
                     <li>
                         <a class="page-scroll" href="../../sesion/logout.php">Cerrar sesión</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#contact"></a>
-                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -108,11 +105,11 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
     <section class="bg-primary-amarillo" id="about">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 col-lg-offset-2 text-center">
+                
                      
     <div class="row">
         <div class="col-lg-2 text-center"></div>
-        <div class="col-lg-8 text-center">
+        <div class="col-lg-10 text-center">
             
        <table border="1" class="table-hover table-responsive">
                     <tr>
@@ -155,18 +152,17 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
           ?>
                   
                 
-                </table> 
-            
+                </table>
+        </div>
+            <div class="col-lg-2 text-center"></div>
             </div>
         </div>   
                     
                     
                     
         </div>
-        <div class="col-lg-1 text-center"></div>
-            </div>
-        </div>
-    </div>
+           
+   
     </section>
     
     

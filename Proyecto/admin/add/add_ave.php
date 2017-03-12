@@ -6,8 +6,6 @@
       header("Location:../");
    }
 
-$connection = new mysqli("localhost", "root", "", "proyecto");
-
 
 
 
@@ -123,7 +121,7 @@ $connection = new mysqli("localhost", "root", "", "proyecto");
                 <br/>
                   <span>Nombre: </span><input type="text" name="nombre"><br/><br/>
                   <span>Color: </span><input type="text" name="color"><br/><br/>
-                  <span>Pais: </span>
+                  <span>Zona: </span>
                   <select name="pais" required >      
     
     <?php
